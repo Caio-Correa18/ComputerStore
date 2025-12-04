@@ -15,8 +15,4 @@
     <ProjectReference Include="..\ComputerStore.Repository\ComputerStore.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
 </Project>

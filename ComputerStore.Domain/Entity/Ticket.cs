@@ -1,4 +1,4 @@
-﻿
+﻿    
 using ComputerStore.Domain.Base;
 
 namespace ComputerStore.Domain.Entity
