@@ -18,9 +18,8 @@ namespace ComputerStore.Test
             using (var context = new ComputerStoreContext(op.Options))
             {
                 Console.WriteLine("Connected");
-
-                var user1 = new User(1,"Heloisa",true,"helolinda","Amovc");
-                var user2 = new User(2, "Caio", true, "amominhanamorada", "AmoHelo");
+                var user1 = new User(1, "Heloisa", true, "helolinda1", "Amovc@1aaa");
+                var user2 = new User(2, "Caio", true, "amominhanamorada1", "AmoHelo@1aaa");
 
                 context.Users.Add(user1);
                 context.Users.Add(user2);
