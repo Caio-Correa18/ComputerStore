@@ -33,8 +33,8 @@
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
-            imageList1 = new ImageList(components);
             tabPage3 = new TabPage();
+            imageList1 = new ImageList(components);
             airTabPage1.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,6 +84,16 @@
             tabPage2.Size = new Size(712, 405);
             tabPage2.TabIndex = 1;
             // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage3.ImageIndex = 7;
+            tabPage3.Location = new Point(79, 4);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(712, 405);
+            tabPage3.TabIndex = 2;
+            // 
             // imageList1
             // 
             imageList1.ColorDepth = ColorDepth.Depth32Bit;
@@ -97,16 +107,6 @@
             imageList1.Images.SetKeyName(5, "plus.png");
             imageList1.Images.SetKeyName(6, "plus.png");
             imageList1.Images.SetKeyName(7, "imac.png");
-            // 
-            // tabPage3
-            // 
-            tabPage3.BackColor = Color.FromArgb(255, 239, 214);
-            tabPage3.ImageIndex = 7;
-            tabPage3.Location = new Point(79, 4);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(712, 405);
-            tabPage3.TabIndex = 2;
             // 
             // MainForm
             // 
