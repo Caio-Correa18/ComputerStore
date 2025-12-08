@@ -24,7 +24,6 @@
     <Folder Include="Config\" />
     <Folder Include="Others\" />
     <Folder Include="Register\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>

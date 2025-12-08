@@ -29,27 +29,44 @@ namespace ComputerStore.App.Base
         #region Events
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dataGridViewList.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show(@"Are you sure you want delete?", @"IFSPStore", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    var id = (int)dataGridViewList.SelectedRows[0].Cells["Id"].Value;
+                    Delete(id);
+                    PopulateGrid();
+                }
+            }
 
+            else
+            {
+                MessageBox.Show(@"Please, select any row!", @"IFSPStore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            Edit();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-
+            New();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            Add();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show(@"Are you sure cancel?", @"ComputerStore", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ClearFields();
+                tabControlRegister.SelectedIndex = 1;
+            }
         }
 
 
@@ -85,7 +102,7 @@ namespace ComputerStore.App.Base
             tabPageRegister.Focus();
         }
 
-        protected virtual void Save()
+        protected virtual void Add()
         {
 
         }
