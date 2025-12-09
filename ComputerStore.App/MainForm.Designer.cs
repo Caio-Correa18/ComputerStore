@@ -47,7 +47,7 @@
             airTabPage1.Controls.Add(tabPage2);
             airTabPage1.Controls.Add(tabPage3);
             airTabPage1.ImageList = imageList1;
-            airTabPage1.ItemSize = new Size(30, 75);
+            airTabPage1.ItemSize = new Size(50, 75);
             airTabPage1.Location = new Point(0, 32);
             airTabPage1.Margin = new Padding(3, 3, 3, 0);
             airTabPage1.Multiline = true;
@@ -62,7 +62,6 @@
             airTabPage1.SquareColor = Color.FromArgb(78, 87, 100);
             airTabPage1.TabCursor = Cursors.Hand;
             airTabPage1.TabIndex = 0;
-            airTabPage1.SelectedIndexChanged += airTabPage1_SelectedIndexChanged;
             // 
             // tabPage1
             // 

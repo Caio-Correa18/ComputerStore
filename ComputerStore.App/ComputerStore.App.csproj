@@ -22,8 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Config\" />
-    <Folder Include="Others\" />
-    <Folder Include="Register\" />
   </ItemGroup>
 
   <ItemGroup>

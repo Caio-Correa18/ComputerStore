@@ -1,3 +1,6 @@
+using ComputerStore.App.Infra;
+using ComputerStore.App.Others;
+using Microsoft.Extensions.DependencyInjection;
 using ReaLTaiizor.Forms;
 
 namespace ComputerStore.App
@@ -7,11 +10,20 @@ namespace ComputerStore.App
         public MainForm()
         {
             InitializeComponent();
+            LoadLogin();
         }
 
-        private void airTabPage1_SelectedIndexChanged(object sender, EventArgs e)
+        private void LoadLogin()
         {
-
+            var login = ConfigureDI.serviceProvider!.GetService<LoginForm>();
+            if(login != null && !login.IsDisposed)
+            {
+                if(login.ShowDialog() != DialogResult.OK)
+                {
+                    Environment.Exit(0);
+                }
+            } 
         }
+       
     }
 }

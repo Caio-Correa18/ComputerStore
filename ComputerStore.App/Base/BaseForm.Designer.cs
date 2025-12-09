@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             tabControlRegister = new ReaLTaiizor.Controls.MaterialTabControl();
@@ -266,18 +267,18 @@
         }
 
         #endregion
-
-        protected ReaLTaiizor.Controls.MaterialTabControl tabControlRegister;
-        protected TabPage tabPageRegister;
-        protected TabPage tabPage2;
-        protected Panel panel1;
-        protected ReaLTaiizor.Controls.Button btnAdd;
-        protected ReaLTaiizor.Controls.Button btnCancel;
-        protected Panel panel2;
-        protected ReaLTaiizor.Controls.Button btnNew;
-        protected ReaLTaiizor.Controls.Button btnDelete;
-        protected ReaLTaiizor.Controls.Button btnEdit;
-        protected ImageList imageList1;
-        protected DataGridView dataGridViewList;
+        
+       protected ReaLTaiizor.Controls.MaterialTabControl tabControlRegister;
+       protected TabPage tabPageRegister;
+       protected TabPage tabPage2;
+       protected Panel panel1;
+       protected ReaLTaiizor.Controls.Button btnAdd;
+       protected ReaLTaiizor.Controls.Button btnCancel;
+       protected Panel panel2;
+       protected ReaLTaiizor.Controls.Button btnNew;
+       protected ReaLTaiizor.Controls.Button btnDelete;
+       protected ReaLTaiizor.Controls.Button btnEdit;
+       protected ImageList imageList1;
+       protected DataGridView dataGridViewList;
     }
 }
