@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ComputerStore.App.ViewModel;
-using ComputerStore.App.Register;
+
 using ComputerStore.App.Others;
 using ComputerStore.Domain.Base;
 using ComputerStore.Domain.Entity;

@@ -44,6 +44,7 @@
             txtLogin.Depth = 0;
             txtLogin.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtLogin.HideSelection = true;
+            txtLogin.Hint = "Login";
             txtLogin.LeadingIcon = null;
             txtLogin.Location = new Point(59, 103);
             txtLogin.MaxLength = 32767;
@@ -60,7 +61,6 @@
             txtLogin.Size = new Size(282, 48);
             txtLogin.TabIndex = 0;
             txtLogin.TabStop = false;
-            txtLogin.Text = "Login";
             txtLogin.TextAlign = HorizontalAlignment.Left;
             txtLogin.TrailingIcon = null;
             txtLogin.UseSystemPasswordChar = false;
@@ -75,6 +75,7 @@
             txtPassword.Depth = 0;
             txtPassword.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.HideSelection = true;
+            txtPassword.Hint = "Password";
             txtPassword.LeadingIcon = Properties.Resources.baseline_fingerprint_black_24dp;
             txtPassword.Location = new Point(59, 207);
             txtPassword.MaxLength = 32767;
@@ -91,7 +92,6 @@
             txtPassword.Size = new Size(282, 48);
             txtPassword.TabIndex = 1;
             txtPassword.TabStop = false;
-            txtPassword.Text = "Password";
             txtPassword.TextAlign = HorizontalAlignment.Left;
             txtPassword.TrailingIcon = null;
             txtPassword.UseSystemPasswordChar = false;
