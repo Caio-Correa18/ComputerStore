@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Net.NetworkInformation;
 using ComputerStore.App.Others;
+using ComputerStore.App.Register;
 
 
 namespace ComputerStore.App.Infra
@@ -61,6 +62,8 @@ namespace ComputerStore.App.Infra
 
             #region Forms
             services.AddTransient<LoginForm, LoginForm>();
+            services.AddTransient<UserRegister, UserRegister>();
+            services.AddTransient<ClientRegister, ClientRegister>();
 
             #endregion
 
@@ -70,6 +73,8 @@ namespace ComputerStore.App.Infra
                         config.CreateMap<User, UserViewModel>();
                         config.CreateMap<Supplier, SupplierViewModel>();
                         config.CreateMap<Client, ClientViewModel>();
+                        config.CreateMap<Ticket, TicketViewModel>();
+                        config.CreateMap<ProductOrService, ProductOrServiceViewModel>();
                     },
                     NullLoggerFactory.Instance).CreateMapper()
                 );

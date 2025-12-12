@@ -32,6 +32,7 @@
             txtPassword = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
             btnSignUp = new ReaLTaiizor.Controls.Button();
             btnCancel = new ReaLTaiizor.Controls.Button();
+            btnNewAcount = new ReaLTaiizor.Controls.Button();
             SuspendLayout();
             // 
             // txtLogin
@@ -106,7 +107,7 @@
             btnSignUp.Image = null;
             btnSignUp.ImageAlign = ContentAlignment.MiddleLeft;
             btnSignUp.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnSignUp.Location = new Point(27, 331);
+            btnSignUp.Location = new Point(59, 275);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnSignUp.PressedColor = Color.FromArgb(165, 37, 37);
@@ -126,7 +127,7 @@
             btnCancel.Image = null;
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancel.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnCancel.Location = new Point(150, 331);
+            btnCancel.Location = new Point(222, 275);
             btnCancel.Name = "btnCancel";
             btnCancel.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnCancel.PressedColor = Color.FromArgb(165, 37, 37);
@@ -136,12 +137,33 @@
             btnCancel.TextAlignment = StringAlignment.Center;
             btnCancel.Click += btnCancel_Click;
             // 
+            // btnNewAcount
+            // 
+            btnNewAcount.BackColor = Color.Transparent;
+            btnNewAcount.BorderColor = Color.FromArgb(32, 34, 37);
+            btnNewAcount.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            btnNewAcount.EnteredColor = Color.FromArgb(32, 34, 37);
+            btnNewAcount.Font = new Font("Microsoft Sans Serif", 12F);
+            btnNewAcount.Image = null;
+            btnNewAcount.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNewAcount.InactiveColor = Color.FromArgb(60, 166, 166);
+            btnNewAcount.Location = new Point(97, 347);
+            btnNewAcount.Name = "btnNewAcount";
+            btnNewAcount.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            btnNewAcount.PressedColor = Color.FromArgb(165, 37, 37);
+            btnNewAcount.Size = new Size(199, 45);
+            btnNewAcount.TabIndex = 4;
+            btnNewAcount.Text = "New Acount";
+            btnNewAcount.TextAlignment = StringAlignment.Center;
+            btnNewAcount.Click += btnNewAcount_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 227, 213);
             ClientSize = new Size(400, 409);
+            Controls.Add(btnNewAcount);
             Controls.Add(btnCancel);
             Controls.Add(btnSignUp);
             Controls.Add(txtPassword);
@@ -149,6 +171,7 @@
             HeaderColor = Color.FromArgb(1, 46, 64);
             Image = Properties.Resources.ComputerStoreIcon;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Computer Store - Login";
             ResumeLayout(false);
         }
@@ -159,5 +182,6 @@
         private ReaLTaiizor.Controls.MaterialTextBoxEdit txtPassword;
         private ReaLTaiizor.Controls.Button btnSignUp;
         private ReaLTaiizor.Controls.Button btnCancel;
+        private ReaLTaiizor.Controls.Button btnNewAcount;
     }
 }

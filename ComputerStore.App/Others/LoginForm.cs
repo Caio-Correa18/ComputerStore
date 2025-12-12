@@ -39,7 +39,7 @@ namespace ComputerStore.App.Others
 
         private User? GetUser(string login, string password)
         {
-            
+
             var user = _userService.Get<User>().Where(x => x.Login == login).FirstOrDefault();
             if (user == null)
                 return null;
@@ -47,17 +47,17 @@ namespace ComputerStore.App.Others
         }
 
 
-      
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-            
+
         }
 
-        
-
-        
-
-
+        private void btnNewAcount_Click(object sender, EventArgs e)
+        {
+            var form = ConfigureDI.serviceProvider!.GetService<UserRegister>();
+            form.ShowDialog();
+        }
     }
 }
