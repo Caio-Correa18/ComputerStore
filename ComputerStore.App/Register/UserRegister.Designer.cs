@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtName = new ReaLTaiizor.Controls.TextBoxEdit();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            txtLogin = new ReaLTaiizor.Controls.TextBoxEdit();
-            txtPassword = new ReaLTaiizor.Controls.TextBoxEdit();
+            txtName = new ReaLTaiizor.Controls.BigTextBox();
+            txtLogin = new ReaLTaiizor.Controls.BigTextBox();
+            txtPassword = new ReaLTaiizor.Controls.BigTextBox();
             SuspendLayout();
             // 
             // btnSave
@@ -44,22 +44,6 @@
             // btnCancel
             // 
             btnCancel.Location = new Point(676, 404);
-            // 
-            // txtName
-            // 
-            txtName.BackColor = Color.Transparent;
-            txtName.Font = new Font("Tahoma", 11F);
-            txtName.ForeColor = Color.FromArgb(176, 183, 191);
-            txtName.Image = null;
-            txtName.Location = new Point(165, 155);
-            txtName.MaxLength = 32767;
-            txtName.Multiline = false;
-            txtName.Name = "txtName";
-            txtName.ReadOnly = false;
-            txtName.Size = new Size(558, 46);
-            txtName.TabIndex = 2;
-            txtName.TextAlignment = HorizontalAlignment.Left;
-            txtName.UseSystemPasswordChar = false;
             // 
             // label1
             // 
@@ -85,7 +69,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(76, 292);
+            label3.Location = new Point(76, 301);
             label3.Name = "label3";
             label3.Size = new Size(97, 28);
             label3.TabIndex = 5;
@@ -103,19 +87,35 @@
             bigLabel1.TabIndex = 6;
             bigLabel1.Text = "Create a new user";
             // 
+            // txtName
+            // 
+            txtName.BackColor = Color.Transparent;
+            txtName.Font = new Font("Tahoma", 11F);
+            txtName.ForeColor = Color.DimGray;
+            txtName.Image = null;
+            txtName.Location = new Point(194, 146);
+            txtName.MaxLength = 32767;
+            txtName.Multiline = false;
+            txtName.Name = "txtName";
+            txtName.ReadOnly = false;
+            txtName.Size = new Size(625, 46);
+            txtName.TabIndex = 7;
+            txtName.TextAlignment = HorizontalAlignment.Left;
+            txtName.UseSystemPasswordChar = false;
+            // 
             // txtLogin
             // 
             txtLogin.BackColor = Color.Transparent;
             txtLogin.Font = new Font("Tahoma", 11F);
-            txtLogin.ForeColor = Color.FromArgb(176, 183, 191);
+            txtLogin.ForeColor = Color.DimGray;
             txtLogin.Image = null;
-            txtLogin.Location = new Point(165, 226);
+            txtLogin.Location = new Point(194, 217);
             txtLogin.MaxLength = 32767;
             txtLogin.Multiline = false;
             txtLogin.Name = "txtLogin";
             txtLogin.ReadOnly = false;
-            txtLogin.Size = new Size(558, 46);
-            txtLogin.TabIndex = 7;
+            txtLogin.Size = new Size(625, 46);
+            txtLogin.TabIndex = 8;
             txtLogin.TextAlignment = HorizontalAlignment.Left;
             txtLogin.UseSystemPasswordChar = false;
             // 
@@ -123,15 +123,15 @@
             // 
             txtPassword.BackColor = Color.Transparent;
             txtPassword.Font = new Font("Tahoma", 11F);
-            txtPassword.ForeColor = Color.FromArgb(176, 183, 191);
+            txtPassword.ForeColor = Color.DimGray;
             txtPassword.Image = null;
-            txtPassword.Location = new Point(179, 286);
+            txtPassword.Location = new Point(179, 292);
             txtPassword.MaxLength = 32767;
             txtPassword.Multiline = false;
             txtPassword.Name = "txtPassword";
             txtPassword.ReadOnly = false;
-            txtPassword.Size = new Size(558, 46);
-            txtPassword.TabIndex = 8;
+            txtPassword.Size = new Size(625, 46);
+            txtPassword.TabIndex = 9;
             txtPassword.TextAlignment = HorizontalAlignment.Left;
             txtPassword.UseSystemPasswordChar = false;
             // 
@@ -142,20 +142,22 @@
             ClientSize = new Size(882, 494);
             Controls.Add(txtPassword);
             Controls.Add(txtLogin);
+            Controls.Add(txtName);
             Controls.Add(bigLabel1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtName);
+            MaximizeBox = false;
             Name = "UserRegister";
+            Sizable = false;
             Text = "User Register";
             Controls.SetChildIndex(btnSave, 0);
             Controls.SetChildIndex(btnCancel, 0);
-            Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(label1, 0);
             Controls.SetChildIndex(label2, 0);
             Controls.SetChildIndex(label3, 0);
             Controls.SetChildIndex(bigLabel1, 0);
+            Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(txtLogin, 0);
             Controls.SetChildIndex(txtPassword, 0);
             ResumeLayout(false);
@@ -163,13 +165,12 @@
         }
 
         #endregion
-
-        private ReaLTaiizor.Controls.TextBoxEdit txtName;
         private Label label1;
         private Label label2;
         private Label label3;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private ReaLTaiizor.Controls.TextBoxEdit txtLogin;
-        private ReaLTaiizor.Controls.TextBoxEdit txtPassword;
+        private ReaLTaiizor.Controls.BigTextBox txtName;
+        private ReaLTaiizor.Controls.BigTextBox txtLogin;
+        private ReaLTaiizor.Controls.BigTextBox txtPassword;
     }
 }

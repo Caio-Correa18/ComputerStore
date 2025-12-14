@@ -35,7 +35,9 @@
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             imageList1 = new ImageList(components);
+            btnClientRegister = new ReaLTaiizor.Controls.Button();
             airTabPage1.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // airTabPage1
@@ -57,7 +59,7 @@
             airTabPage1.SelectedTabBackColor = Color.FromArgb(255, 239, 214);
             airTabPage1.SelectedTextColor = Color.Black;
             airTabPage1.ShowOuterBorders = false;
-            airTabPage1.Size = new Size(795, 413);
+            airTabPage1.Size = new Size(1077, 683);
             airTabPage1.SizeMode = TabSizeMode.Fixed;
             airTabPage1.SquareColor = Color.FromArgb(78, 87, 100);
             airTabPage1.TabCursor = Cursors.Hand;
@@ -66,11 +68,12 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage1.Controls.Add(btnClientRegister);
             tabPage1.ImageIndex = 6;
             tabPage1.Location = new Point(79, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(712, 405);
+            tabPage1.Size = new Size(994, 675);
             tabPage1.TabIndex = 0;
             // 
             // tabPage2
@@ -107,21 +110,43 @@
             imageList1.Images.SetKeyName(6, "plus.png");
             imageList1.Images.SetKeyName(7, "imac.png");
             // 
+            // btnClientRegister
+            // 
+            btnClientRegister.BackColor = Color.Transparent;
+            btnClientRegister.BorderColor = Color.FromArgb(32, 34, 37);
+            btnClientRegister.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            btnClientRegister.EnteredColor = Color.FromArgb(60, 166, 166);
+            btnClientRegister.Font = new Font("Microsoft Sans Serif", 12F);
+            btnClientRegister.Image = null;
+            btnClientRegister.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClientRegister.InactiveColor = Color.FromArgb(60, 166, 166);
+            btnClientRegister.Location = new Point(110, 82);
+            btnClientRegister.Name = "btnClientRegister";
+            btnClientRegister.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            btnClientRegister.PressedColor = Color.FromArgb(165, 37, 37);
+            btnClientRegister.Size = new Size(148, 64);
+            btnClientRegister.TabIndex = 0;
+            btnClientRegister.Text = "New Client";
+            btnClientRegister.TextAlignment = StringAlignment.Center;
+            btnClientRegister.Click += btnClientRegister_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1082, 720);
             Controls.Add(airTabPage1);
             HeaderColor = Color.FromArgb(1, 46, 64);
             Image = Properties.Resources.ComputerStoreIcon;
             Name = "MainForm";
             ShowIcon = false;
+            Sizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Computer Store";
             WindowState = FormWindowState.Maximized;
             airTabPage1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -132,5 +157,6 @@
         private TabPage tabPage2;
         private ImageList imageList1;
         private TabPage tabPage3;
+        private ReaLTaiizor.Controls.Button btnClientRegister;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ComputerStore.Domain.Entity;
+using ComputerStore.Domain.Enum;
 using FluentValidation;
 using System.Data;
 
@@ -14,7 +15,9 @@ namespace ComputerStore.Service.Validators
                 .NotEmpty().WithMessage("The price of the item or product is mandatory.");
             RuleFor(d => d.Type)
                 .NotEmpty().WithMessage("The type cannot be empty.");
-            
+            RuleFor(d => d.Supplier)
+                .NotNull().WithMessage("The supplier is required for products.")
+                .When(d => d.Type == TypeServiceOrProduct.Product);
         }
     }
 }

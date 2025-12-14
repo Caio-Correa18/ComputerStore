@@ -2,8 +2,8 @@
 using ComputerStore.App.ViewModel;
 using ComputerStore.Domain.Base;
 using ComputerStore.Domain.Entity;
-using ComputerStore.Domain.Enum;
 using ComputerStore.Service.Validators;
+using Org.BouncyCastle.Pqc.Crypto.Saber;
 using ReaLTaiizor.Controls;
 using System;
 using System.Collections.Generic;
@@ -17,37 +17,26 @@ using System.Windows.Forms;
 
 namespace ComputerStore.App.Register
 {
-    public partial class ClientRegister : TestBaseForm
+    public partial class SupplierRegister : TestBaseForm
     {
-        private IBaseService<Client> _clientService;
-        private List<ClientViewModel> _clients;
-        public ClientRegister(IBaseService<Client> clientService)
+        private IBaseService<Supplier> _supplierService;
+        private List<SupplierViewModel> _suppliers;
+        public SupplierRegister(IBaseService<Supplier> supplierService)
         {
-            _clientService = clientService;
+            _supplierService = supplierService;
             InitializeComponent();
         }
 
-        private void FormToObject(Client client)
+        private void FormToObject(Supplier supplier)
         {
-            
-            client.Name = txtName.Text;
-            client.Email = txtEmail.Text;
-            client.Document = txtDocument.Text;
+            supplier.Name = txtName.Text;
+            supplier.Email = txtEmail.Text;
+            supplier.Document = txtDocument.Text;
             string aux = txtPhone.Text;
-            client.Phone = (int)Convert.ToInt64(aux);
-            
-            if(rdbEnterprise.Checked)
-            {
-                client.TypeCLient = TypeClient.Enterprise;
-            }
-            if (rdbPerson.Checked)
-            {
-                client.TypeCLient = TypeClient.Person;
-            }
+            supplier.Phone = (int)Convert.ToInt64(aux);
+            supplier.Adress = txtAddress.Text;
 
-            
         }
-        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -58,15 +47,14 @@ namespace ComputerStore.App.Register
         {
             try
             {
-                var client = new Client();
-                FormToObject(client);
-                _clientService.Add<Client,Client,ClientValidator>(client);
-                MessageBox.Show("Client added successfully.",
+                var supplier = new Supplier();
+                FormToObject(supplier);
+                _supplierService.Add<Supplier,Supplier,SupplierValidator>(supplier);
+                MessageBox.Show("Supplier added successfully.",
                     "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch(Exception ex) 
             {
-                
                 MessageBox.Show(ex.Message, @"Computer Store",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearFields();
@@ -74,7 +62,6 @@ namespace ComputerStore.App.Register
 
 
         }
-
 
         private void ClearFields()
         {
@@ -86,7 +73,5 @@ namespace ComputerStore.App.Register
                 }
             }
         }
-
-
     }
 }

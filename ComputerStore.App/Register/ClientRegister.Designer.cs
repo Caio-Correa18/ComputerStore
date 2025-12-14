@@ -39,11 +39,17 @@
             txtDocument = new ReaLTaiizor.Controls.TextBoxEdit();
             txtEmail = new ReaLTaiizor.Controls.TextBoxEdit();
             label4 = new Label();
+            bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             SuspendLayout();
             // 
             // btnSave
             // 
+            btnSave.Location = new Point(643, 617);
             btnSave.Click += btnSave_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(850, 599);
             // 
             // txtName
             // 
@@ -51,7 +57,7 @@
             txtName.Font = new Font("Tahoma", 11F);
             txtName.ForeColor = Color.FromArgb(176, 183, 191);
             txtName.Image = null;
-            txtName.Location = new Point(109, 175);
+            txtName.Location = new Point(136, 286);
             txtName.MaxLength = 32767;
             txtName.Multiline = false;
             txtName.Name = "txtName";
@@ -65,7 +71,7 @@
             // 
             lblName.AutoSize = true;
             lblName.ForeColor = SystemColors.ButtonHighlight;
-            lblName.Location = new Point(35, 184);
+            lblName.Location = new Point(62, 295);
             lblName.Name = "lblName";
             lblName.Size = new Size(68, 28);
             lblName.TabIndex = 10;
@@ -75,7 +81,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ButtonHighlight;
-            label1.Location = new Point(49, 51);
+            label1.Location = new Point(76, 162);
             label1.Name = "label1";
             label1.Size = new Size(57, 28);
             label1.TabIndex = 11;
@@ -88,7 +94,7 @@
             rdbEnterprise.Field = 16;
             rdbEnterprise.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbEnterprise.Image = null;
-            rdbEnterprise.Location = new Point(81, 114);
+            rdbEnterprise.Location = new Point(108, 225);
             rdbEnterprise.Name = "rdbEnterprise";
             rdbEnterprise.NoRounding = false;
             rdbEnterprise.Size = new Size(120, 16);
@@ -98,12 +104,13 @@
             // 
             // rdbPerson
             // 
-            rdbPerson.Checked = false;
+            rdbPerson.CausesValidation = false;
+            rdbPerson.Checked = true;
             rdbPerson.Customization = "PDw8/+3t7f/m5ub/p6en/2RkZP8=";
             rdbPerson.Field = 16;
             rdbPerson.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rdbPerson.Image = null;
-            rdbPerson.Location = new Point(308, 114);
+            rdbPerson.Location = new Point(335, 225);
             rdbPerson.Name = "rdbPerson";
             rdbPerson.NoRounding = false;
             rdbPerson.Size = new Size(120, 16);
@@ -115,7 +122,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(35, 299);
+            label2.Location = new Point(62, 410);
             label2.Name = "label2";
             label2.Size = new Size(71, 28);
             label2.TabIndex = 16;
@@ -125,7 +132,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(454, 299);
+            label3.Location = new Point(481, 410);
             label3.Name = "label3";
             label3.Size = new Size(107, 28);
             label3.TabIndex = 17;
@@ -137,7 +144,7 @@
             txtPhone.Font = new Font("Tahoma", 11F);
             txtPhone.ForeColor = Color.FromArgb(176, 183, 191);
             txtPhone.Image = null;
-            txtPhone.Location = new Point(101, 299);
+            txtPhone.Location = new Point(128, 410);
             txtPhone.MaxLength = 32767;
             txtPhone.Multiline = false;
             txtPhone.Name = "txtPhone";
@@ -153,7 +160,7 @@
             txtDocument.Font = new Font("Tahoma", 11F);
             txtDocument.ForeColor = Color.FromArgb(176, 183, 191);
             txtDocument.Image = null;
-            txtDocument.Location = new Point(567, 299);
+            txtDocument.Location = new Point(594, 410);
             txtDocument.MaxLength = 32767;
             txtDocument.Multiline = false;
             txtDocument.Name = "txtDocument";
@@ -169,7 +176,7 @@
             txtEmail.Font = new Font("Tahoma", 11F);
             txtEmail.ForeColor = Color.FromArgb(176, 183, 191);
             txtEmail.Image = null;
-            txtEmail.Location = new Point(144, 400);
+            txtEmail.Location = new Point(171, 511);
             txtEmail.MaxLength = 32767;
             txtEmail.Multiline = false;
             txtEmail.Name = "txtEmail";
@@ -183,17 +190,30 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(49, 409);
+            label4.Location = new Point(76, 520);
             label4.Name = "label4";
             label4.Size = new Size(63, 28);
             label4.TabIndex = 21;
             label4.Text = "Email:";
             // 
+            // bigLabel1
+            // 
+            bigLabel1.AutoSize = true;
+            bigLabel1.BackColor = Color.Transparent;
+            bigLabel1.Font = new Font("Segoe UI", 25F);
+            bigLabel1.ForeColor = Color.White;
+            bigLabel1.Location = new Point(336, 57);
+            bigLabel1.Name = "bigLabel1";
+            bigLabel1.Size = new Size(384, 57);
+            bigLabel1.TabIndex = 22;
+            bigLabel1.Text = "Create a new Client";
+            // 
             // ClientRegister
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 607);
+            ClientSize = new Size(1098, 716);
+            Controls.Add(bigLabel1);
             Controls.Add(label4);
             Controls.Add(txtEmail);
             Controls.Add(txtDocument);
@@ -205,10 +225,11 @@
             Controls.Add(label1);
             Controls.Add(lblName);
             Controls.Add(txtName);
+            MaximizeBox = false;
             Name = "ClientRegister";
+            Sizable = false;
+            SizeGripStyle = SizeGripStyle.Hide;
             Text = "Client Register";
-            Controls.SetChildIndex(btnSave, 0);
-            Controls.SetChildIndex(btnCancel, 0);
             Controls.SetChildIndex(txtName, 0);
             Controls.SetChildIndex(lblName, 0);
             Controls.SetChildIndex(label1, 0);
@@ -220,6 +241,9 @@
             Controls.SetChildIndex(txtDocument, 0);
             Controls.SetChildIndex(txtEmail, 0);
             Controls.SetChildIndex(label4, 0);
+            Controls.SetChildIndex(btnSave, 0);
+            Controls.SetChildIndex(btnCancel, 0);
+            Controls.SetChildIndex(bigLabel1, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +261,6 @@
         private ReaLTaiizor.Controls.TextBoxEdit txtDocument;
         private ReaLTaiizor.Controls.TextBoxEdit txtEmail;
         private Label label4;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
     }
 }

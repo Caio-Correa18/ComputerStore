@@ -64,6 +64,8 @@ namespace ComputerStore.App.Infra
             services.AddTransient<LoginForm, LoginForm>();
             services.AddTransient<UserRegister, UserRegister>();
             services.AddTransient<ClientRegister, ClientRegister>();
+            services.AddTransient<SupplierRegister, SupplierRegister>();
+            services.AddTransient<ServiceRegister, ServiceRegister>();
 
             #endregion
 

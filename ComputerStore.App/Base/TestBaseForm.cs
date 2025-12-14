@@ -28,6 +28,7 @@ namespace ComputerStore.App.Base
             if (MessageBox.Show(@"Are you sure cancel?", @"Computer Store", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ClearFields();
+                Close();
                 
             }
         }

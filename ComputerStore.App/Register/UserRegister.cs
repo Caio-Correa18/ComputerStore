@@ -17,7 +17,7 @@ namespace ComputerStore.App.Register
         {
             _userService = userService;
             InitializeComponent();
-            
+
         }
 
         private void FormToObject(User user)
@@ -41,18 +41,18 @@ namespace ComputerStore.App.Register
                 FormToObject(user);
                 _userService.Add<User, User, UserValidator>(user);
                 MessageBox.Show("Your account was successfully created.",
-                    "Computer Store",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
             }
             catch (Exception ex)
             {
                 ClearFields();
-                MessageBox.Show(ex.Message,@"Computer Store",
-                    MessageBoxButtons.OK,MessageBoxIcon.Error);
-                
+                MessageBox.Show(ex.Message, @"Computer Store",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-                                      
+
         }
 
         private void ClearFields()
@@ -61,10 +61,11 @@ namespace ComputerStore.App.Register
             {
                 if (control is MaterialTextBoxEdit textBox)
                 {
-                   textBox.Clear();
+                    textBox.Clear();
                 }
             }
         }
 
+        
     }
 }
