@@ -52,6 +52,7 @@ namespace ComputerStore.App.Register
                 _supplierService.Add<Supplier,Supplier,SupplierValidator>(supplier);
                 MessageBox.Show("Supplier added successfully.",
                     "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
             catch(Exception ex) 
             {

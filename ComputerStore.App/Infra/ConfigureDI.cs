@@ -82,6 +82,7 @@ namespace ComputerStore.App.Infra
                         config.CreateMap<Ticket, TicketViewModel>()
                         .ReverseMap();
                         config.CreateMap<ProductOrService, ProductOrServiceViewModel>()
+                        .ForMember(c => c.Supplier, opt => opt.MapFrom(src => src.Supplier))
                         .ReverseMap();
                     },
                     NullLoggerFactory.Instance).CreateMapper()

@@ -206,7 +206,7 @@
             rbStarted.TabIndex = 13;
             rbStarted.Text = "Started";
             rbStarted.Transparent = false;
-            rbStarted.CheckedChanged += RbStatus_CheckedChanged;
+            
             // 
             // rbFinished
             // 
@@ -222,7 +222,7 @@
             rbFinished.TabIndex = 14;
             rbFinished.Text = "Finished";
             rbFinished.Transparent = false;
-            rbFinished.CheckedChanged += RbStatus_CheckedChanged;
+            
             // 
             // cbClient
             // 
@@ -275,7 +275,7 @@
             rbService.TabIndex = 17;
             rbService.Text = "Service";
             rbService.Transparent = false;
-            rbService.CheckedChanged += RbType_CheckedChanged;
+            
             // 
             // rbProduct
             // 
@@ -291,7 +291,7 @@
             rbProduct.TabIndex = 18;
             rbProduct.Text = "Product";
             rbProduct.Transparent = false;
-            rbProduct.CheckedChanged += RbType_CheckedChanged;
+            
             // 
             // cblService
             // 

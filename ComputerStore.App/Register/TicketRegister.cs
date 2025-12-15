@@ -22,6 +22,7 @@ namespace ComputerStore.App.Register
         private readonly IBaseService<Ticket> _ticketService;
         private readonly IBaseService<ProductOrService> _productOrServiceService;
         private readonly IBaseService<Client> _clientService;
+        private readonly IBaseService<Supplier> _supplierService;
 
         // Lista em memória para facilitar o filtro (Produto vs Serviço)
         private List<ProductOrService> _allItens;
@@ -31,15 +32,16 @@ namespace ComputerStore.App.Register
         // Construtor para NOVO Ticket
         public TicketRegister()
         {
-            InitializeComponent();
+            
 
             // Injeção de Dependência
             _ticketService = ConfigureDI.serviceProvider.GetService<IBaseService<Ticket>>();
             _productOrServiceService = ConfigureDI.serviceProvider.GetService<IBaseService<ProductOrService>>();
             _clientService = ConfigureDI.serviceProvider.GetService<IBaseService<Client>>();
-
+            _supplierService = ConfigureDI.serviceProvider.GetService<IBaseService<Supplier>>();
+            InitializeComponent();
             LoadData();
-            ConfigureEvents();
+            
         }
 
         // Construtor para EDITAR Ticket
@@ -51,36 +53,7 @@ namespace ComputerStore.App.Register
         }
 
         // 1. Configura Eventos (Cliques de botão, mudança de radio, etc)
-        private void ConfigureEvents()
-        {
-            
-            rbProduct.CheckedChanged += RbType_CheckedChanged;
-            rbService.CheckedChanged += RbType_CheckedChanged;
-            rbStarted.CheckedChanged += RbStatus_CheckedChanged;
-            rbFinished.CheckedChanged += RbStatus_CheckedChanged;
-        }
-
-        private void RbStatus_CheckedChanged(object sender)
-        {
-            CheckStatus();
-        }
-
-        private void RbType_CheckedChanged(object sender)
-        {
-            FilterListByType();
-        }
-
-        private void CheckStatus()
-        {
-            if (rbStarted.Checked)
-            {
-                txtSolution.Enabled = false;
-            }
-            if (rbService.Checked)
-            {
-                txtSolution.Enabled = true;
-            }
-        }
+       
 
 
         // 2. Carrega os dados iniciais do Banco
@@ -262,14 +235,43 @@ namespace ComputerStore.App.Register
  
         private void btnAddClient_Click(object sender, EventArgs e)
         {
-            var clientForm = ConfigureDI.serviceProvider!.GetService<ClientRegister>();
-            clientForm.ShowDialog();
+            var form = new ClientRegister(_clientService);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+                var client = (List<Client>)cbClient.DataSource;
+                var newClient = client.OrderBy(x => x.Id).FirstOrDefault();
+                if (newClient != null)
+                {
+                    int index = cbClient.Items.IndexOf(newClient);
+                    if (index >= 0) { cbClient.SelectedIndex = index; }
+                }
+            }
         }
 
         private void btnNewService_Click(object sender, EventArgs e)
         {
-            var serviceForm = ConfigureDI.serviceProvider!.GetService<ServiceRegister>();
-            serviceForm.ShowDialog();
+            var form = new ServiceRegister(_productOrServiceService, _supplierService);
+
+
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                rbService.Checked = true;
+                LoadData();
+
+                var listaAtual = (List<ProductOrService>)cblService.DataSource;
+                var newService = listaAtual.OrderBy(x => x.Id).FirstOrDefault();
+
+                if (newService != null)
+                {
+                    int index = cblService.Items.IndexOf(newService);
+                    if (index >= 0)
+                    {
+                        cblService.SetItemChecked(index, true);
+                    }
+                }
+            }
         }
     }
 }
