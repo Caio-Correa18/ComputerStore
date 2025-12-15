@@ -1,10 +1,10 @@
 ﻿using ComputerStore.App.Base;
 using ComputerStore.App.Infra;
-using ComputerStore.App.Others; // Certifique-se que UserSession está aqui
+using ComputerStore.App.Others; 
 using ComputerStore.Domain.Base;
 using ComputerStore.Domain.Entity;
-using ComputerStore.Domain.Enum; // Para acessar os Enums TypeServiceOrProduct
-using ComputerStore.Service.Validators; // Para o validador
+using ComputerStore.Domain.Enum; 
+using ComputerStore.Service.Validators; 
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,22 +17,22 @@ namespace ComputerStore.App.Register
 {
     public partial class TicketRegister : TestBaseForm
     {
-        // Serviços injetados
-        
+
+
         private readonly IBaseService<Ticket> _ticketService;
         private readonly IBaseService<ProductOrService> _productOrServiceService;
         private readonly IBaseService<Client> _clientService;
         private readonly IBaseService<Supplier> _supplierService;
 
-        // Lista em memória para facilitar o filtro (Produto vs Serviço)
+
         private List<ProductOrService> _allItens;
         private int _currentTicketId;
-        
 
-        // Construtor para NOVO Ticket
+
+
         public TicketRegister()
         {
-            
+
 
             // Injeção de Dependência
             _ticketService = ConfigureDI.serviceProvider.GetService<IBaseService<Ticket>>();
@@ -41,10 +41,10 @@ namespace ComputerStore.App.Register
             _supplierService = ConfigureDI.serviceProvider.GetService<IBaseService<Supplier>>();
             InitializeComponent();
             LoadData();
-            
+
         }
 
-        // Construtor para EDITAR Ticket
+
         public TicketRegister(Ticket ticket) : this()
         {
             IsEditMode = true;
@@ -52,27 +52,27 @@ namespace ComputerStore.App.Register
             FillFields(ticket);
         }
 
-        // 1. Configura Eventos (Cliques de botão, mudança de radio, etc)
-       
 
 
-        // 2. Carrega os dados iniciais do Banco
+
+
+
         private void LoadData()
         {
-            // Carrega Clientes
+
             var clients = _clientService.Get<Client>().OrderBy(c => c.Name).ToList();
             cbClient.DataSource = clients;
             cbClient.DisplayMember = "Name";
             cbClient.ValueMember = "Id";
 
-            // Carrega TODOS os Produtos/Serviços para memória
+
             _allItens = _productOrServiceService.Get<ProductOrService>().ToList();
 
-            // Filtra a lista inicial com base no que está marcado (provavelmente Service)
+
             FilterListByType();
         }
 
-        // 3. Lógica de Filtro (Product vs Service)
+        
         private void FilterListByType()
         {
             cblService.DataSource = null;
@@ -82,12 +82,12 @@ namespace ComputerStore.App.Register
 
             if (rbProduct.Checked)
             {
-                // Filtra onde o Enum Type é Product (ajuste o nome do Enum se for diferente)
+               
                 filteredList = _allItens.Where(x => x.Type == TypeServiceOrProduct.Product).ToList();
             }
             else
             {
-                // Filtra onde o Enum Type é Service
+              
                 filteredList = _allItens.Where(x => x.Type == TypeServiceOrProduct.Service).ToList();
             }
 
@@ -101,45 +101,42 @@ namespace ComputerStore.App.Register
             FilterListByType();
         }
 
-        // 4. Preenche os campos (Modo Edição)
+       
         private void FillFields(Ticket ticket)
         {
-            // Campos Simples
+            
             txtDate.Text = ticket.IssueDate.ToShortDateString();
             txtBudget.Text = ticket.Budget.ToString("F2");
-            bigTextBox1.Text = ticket.Description;
+            txtDescription.Text = ticket.Description;
             txtSolution.Text = ticket.Solution;
 
-            // Status
+            
             if (ticket.Status == "Started") rbStarted.Checked = true;
             else if (ticket.Status == "Finished") rbFinished.Checked = true;
 
-            // Cliente
+            
             if (ticket.Client != null)
             {
                 cbClient.SelectedValue = ticket.Client.Id;
             }
 
-            // Itens (SaleItens)
-            // Aqui tem um truque: Como filtramos a lista visual, pode ser que alguns itens do ticket 
-            // não estejam visíveis agora (ex: ticket tem produto, mas radio 'Service' tá marcado).
-            // O ideal seria marcar o que der.
+            
             if (ticket.SaleItens != null)
             {
-                for (int i = 0; i < cblService.Items.Count; i++)
+                for (int i = 0; i < cblProduct.Items.Count; i++)
                 {
-                    var itemDaLista = (ProductOrService)cblService.Items[i];
+                    var itemDaLista = (ProductOrService)cblProduct.Items[i];
 
-                    // Verifica se esse item existe na lista de vendas do ticket
+                    
                     if (ticket.SaleItens.Any(sale => sale.ProductOrService.Id == itemDaLista.Id))
                     {
-                        cblService.SetItemChecked(i, true);
+                        cblProduct.SetItemChecked(i, true);
                     }
                 }
             }
         }
 
-        // 5. Passa dados do Form para o Objeto
+       
         private void FormToObject(Ticket ticket)
         {
             if (DateTime.TryParse(txtDate.Text, out DateTime date))
@@ -147,29 +144,24 @@ namespace ComputerStore.App.Register
             else
                 ticket.IssueDate = DateTime.Now;
 
-            if (decimal.TryParse(txtBudget.Text, out decimal budget))
-                ticket.Budget = budget;
+            
 
-            ticket.Description = bigTextBox1.Text;
+            ticket.Description = txtDescription.Text;
             ticket.Solution = txtSolution.Text;
 
-            // Define Prazo padrão (ex: 7 dias) se for novo
-            if (ticket.Id == 0) ticket.DeadLine = DateTime.Now.AddDays(7);
+            
 
             ticket.Status = rbStarted.Checked ? "Started" : "Finished";
             ticket.Client = (Client)cbClient.SelectedItem;
 
-            // Lógica dos Itens (Sale)
+          
             if (ticket.SaleItens == null) ticket.SaleItens = new List<Sale>();
 
-            // Nota: Num cenário real, você provavelmente limparia a lista e refaria, 
-            // ou gerenciaria adições/remoções. Aqui vamos adicionar os novos selecionados.
-            // O CheckedListBox não tem "Quantidade", então assumiremos Qtd = 1.
-
-            // IMPORTANTE: Esse loop pega apenas os itens VISÍVEIS e MARCADOS na lista atual.
+            
+            
             foreach (ProductOrService item in cblService.CheckedItems)
             {
-                // Só adiciona se ainda não existir na lista (evita duplicação se salvar 2x)
+                
                 if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
                 {
                     var newSale = new Sale
@@ -177,15 +169,19 @@ namespace ComputerStore.App.Register
                         ProductOrService = item,
                         Quantity = 1,
                         UnityValue = item.Price,
-                        TotalValue = item.Price * 1, // Qtde 1
+                        TotalValue = item.Price * 1,
                         Ticket = ticket
                     };
                     ticket.SaleItens.Add(newSale);
+
                 }
+                decimal aux = item.Price;
+
+                ticket.Budget += aux;
             }
         }
 
-        // 6. Botão Salvar
+        
         protected override void Save()
         {
             try
@@ -194,11 +190,9 @@ namespace ComputerStore.App.Register
 
                 if (IsEditMode)
                 {
-                    // Busca com Includes para trazer a lista de itens e cliente
-                    // Atenção: O seu BaseService precisa suportar Includes strings ou expression
+                   
                     ticket = _ticketService.GetById<Ticket>(_currentTicketId);
-                    // Se o GetById genérico não trouxer os itens (SaleItens), pode dar erro ao salvar.
-                    // Idealmente: _ticketService.GetById(_currentTicketId, new List<string> { "SaleItens", "Client" });
+                   
                 }
                 else
                 {
@@ -207,7 +201,7 @@ namespace ComputerStore.App.Register
 
                 FormToObject(ticket);
 
-                // Anexa objetos relacionados para evitar duplicação no EF Core
+                
                 if (ticket.Client != null) _ticketService.AttachObject(ticket.Client);
 
                 foreach (var sale in ticket.SaleItens)
@@ -232,7 +226,7 @@ namespace ComputerStore.App.Register
             }
         }
 
- 
+
         private void btnAddClient_Click(object sender, EventArgs e)
         {
             var form = new ClientRegister(_clientService);
@@ -260,8 +254,10 @@ namespace ComputerStore.App.Register
                 rbService.Checked = true;
                 LoadData();
 
+
                 var listaAtual = (List<ProductOrService>)cblService.DataSource;
                 var newService = listaAtual.OrderBy(x => x.Id).FirstOrDefault();
+
 
                 if (newService != null)
                 {
@@ -272,6 +268,33 @@ namespace ComputerStore.App.Register
                     }
                 }
             }
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            var form = new ServiceRegister(_productOrServiceService, _supplierService);
+
+
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                rbService.Checked = true;
+                LoadData();
+
+                var listaAtual = (List<ProductOrService>)cblProduct.DataSource;
+                var newService = listaAtual.OrderBy(x => x.Id).FirstOrDefault();
+
+                if (newService != null)
+                {
+                    int index = cblProduct.Items.IndexOf(newService);
+                    if (index >= 0)
+                    {
+                        cblProduct.SetItemChecked(index, true);
+                    }
+                }
+            }
+
+
         }
     }
 }

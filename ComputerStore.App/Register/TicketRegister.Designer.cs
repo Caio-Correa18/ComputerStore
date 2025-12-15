@@ -38,7 +38,7 @@
             label6 = new Label();
             label7 = new Label();
             txtBudget = new ReaLTaiizor.Controls.BigTextBox();
-            bigTextBox1 = new ReaLTaiizor.Controls.BigTextBox();
+            txtDescription = new ReaLTaiizor.Controls.BigTextBox();
             rbStarted = new ReaLTaiizor.Controls.AirRadioButton();
             rbFinished = new ReaLTaiizor.Controls.AirRadioButton();
             cbClient = new ReaLTaiizor.Controls.ComboBoxEdit();
@@ -50,17 +50,19 @@
             gbStatus = new GroupBox();
             groupBox1 = new GroupBox();
             btnNewService = new ReaLTaiizor.Controls.Button();
+            btnAddProduct = new ReaLTaiizor.Controls.Button();
+            cblProduct = new CheckedListBox();
             gbStatus.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(748, 925);
+            btnSave.Location = new Point(700, 927);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(937, 925);
+            btnCancel.Location = new Point(919, 927);
             // 
             // bigLabel1
             // 
@@ -176,21 +178,21 @@
             txtBudget.TextAlignment = HorizontalAlignment.Left;
             txtBudget.UseSystemPasswordChar = false;
             // 
-            // bigTextBox1
+            // txtDescription
             // 
-            bigTextBox1.BackColor = Color.Transparent;
-            bigTextBox1.Font = new Font("Tahoma", 11F);
-            bigTextBox1.ForeColor = Color.DimGray;
-            bigTextBox1.Image = null;
-            bigTextBox1.Location = new Point(230, 260);
-            bigTextBox1.MaxLength = 32767;
-            bigTextBox1.Multiline = true;
-            bigTextBox1.Name = "bigTextBox1";
-            bigTextBox1.ReadOnly = false;
-            bigTextBox1.Size = new Size(743, 245);
-            bigTextBox1.TabIndex = 12;
-            bigTextBox1.TextAlignment = HorizontalAlignment.Left;
-            bigTextBox1.UseSystemPasswordChar = false;
+            txtDescription.BackColor = Color.Transparent;
+            txtDescription.Font = new Font("Tahoma", 11F);
+            txtDescription.ForeColor = Color.DimGray;
+            txtDescription.Image = null;
+            txtDescription.Location = new Point(218, 248);
+            txtDescription.MaxLength = 32767;
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.ReadOnly = false;
+            txtDescription.Size = new Size(743, 245);
+            txtDescription.TabIndex = 12;
+            txtDescription.TextAlignment = HorizontalAlignment.Left;
+            txtDescription.UseSystemPasswordChar = false;
             // 
             // rbStarted
             // 
@@ -206,7 +208,6 @@
             rbStarted.TabIndex = 13;
             rbStarted.Text = "Started";
             rbStarted.Transparent = false;
-            
             // 
             // rbFinished
             // 
@@ -222,7 +223,6 @@
             rbFinished.TabIndex = 14;
             rbFinished.Text = "Finished";
             rbFinished.Transparent = false;
-            
             // 
             // cbClient
             // 
@@ -275,7 +275,6 @@
             rbService.TabIndex = 17;
             rbService.Text = "Service";
             rbService.Transparent = false;
-            
             // 
             // rbProduct
             // 
@@ -291,7 +290,6 @@
             rbProduct.TabIndex = 18;
             rbProduct.Text = "Product";
             rbProduct.Transparent = false;
-            
             // 
             // cblService
             // 
@@ -356,11 +354,40 @@
             btnNewService.TextAlignment = StringAlignment.Center;
             btnNewService.Click += btnNewService_Click;
             // 
+            // btnAddProduct
+            // 
+            btnAddProduct.BackColor = Color.Transparent;
+            btnAddProduct.BorderColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.EnteredBorderColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.EnteredColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.Font = new Font("Microsoft Sans Serif", 12F);
+            btnAddProduct.Image = Properties.Resources.Plus2;
+            btnAddProduct.ImageAlign = ContentAlignment.MiddleCenter;
+            btnAddProduct.InactiveColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.Location = new Point(293, 786);
+            btnAddProduct.Name = "btnAddProduct";
+            btnAddProduct.PressedBorderColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.PressedColor = Color.FromArgb(2, 103, 115);
+            btnAddProduct.Size = new Size(46, 36);
+            btnAddProduct.TabIndex = 24;
+            btnAddProduct.TextAlignment = StringAlignment.Center;
+            btnAddProduct.Click += btnAddProduct_Click;
+            // 
+            // cblProduct
+            // 
+            cblProduct.FormattingEnabled = true;
+            cblProduct.Location = new Point(345, 786);
+            cblProduct.Name = "cblProduct";
+            cblProduct.Size = new Size(180, 33);
+            cblProduct.TabIndex = 25;
+            // 
             // TicketRegister
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1155, 1022);
+            Controls.Add(cblProduct);
+            Controls.Add(btnAddProduct);
             Controls.Add(btnNewService);
             Controls.Add(groupBox1);
             Controls.Add(gbStatus);
@@ -368,7 +395,7 @@
             Controls.Add(cblService);
             Controls.Add(btnAddClient);
             Controls.Add(cbClient);
-            Controls.Add(bigTextBox1);
+            Controls.Add(txtDescription);
             Controls.Add(txtBudget);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -393,7 +420,7 @@
             Controls.SetChildIndex(label6, 0);
             Controls.SetChildIndex(label7, 0);
             Controls.SetChildIndex(txtBudget, 0);
-            Controls.SetChildIndex(bigTextBox1, 0);
+            Controls.SetChildIndex(txtDescription, 0);
             Controls.SetChildIndex(cbClient, 0);
             Controls.SetChildIndex(btnAddClient, 0);
             Controls.SetChildIndex(cblService, 0);
@@ -401,6 +428,8 @@
             Controls.SetChildIndex(gbStatus, 0);
             Controls.SetChildIndex(groupBox1, 0);
             Controls.SetChildIndex(btnNewService, 0);
+            Controls.SetChildIndex(btnAddProduct, 0);
+            Controls.SetChildIndex(cblProduct, 0);
             gbStatus.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             ResumeLayout(false);
@@ -422,7 +451,7 @@
         private Label label6;
         private Label label7;
         private ReaLTaiizor.Controls.BigTextBox txtBudget;
-        private ReaLTaiizor.Controls.BigTextBox bigTextBox1;
+        private ReaLTaiizor.Controls.BigTextBox txtDescription;
         private ReaLTaiizor.Controls.AirRadioButton rbStarted;
         private ReaLTaiizor.Controls.AirRadioButton rbFinished;
         private ReaLTaiizor.Controls.ComboBoxEdit cbClient;
@@ -434,5 +463,7 @@
         private GroupBox gbStatus;
         private GroupBox groupBox1;
         private ReaLTaiizor.Controls.Button btnNewService;
+        private ReaLTaiizor.Controls.Button btnAddProduct;
+        private CheckedListBox cblProduct;
     }
 }

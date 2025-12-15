@@ -15,7 +15,7 @@ namespace ComputerStore.Service.Validators
                 .NotEmpty().WithMessage("The price of the item or product is mandatory.")
                 .GreaterThan(0).WithMessage("The price cannot be negative.");
             RuleFor(d => d.Type)
-                .NotEmpty().WithMessage("The type cannot be empty.");
+                .IsInEnum().WithMessage("The type cannot be empty.");
             RuleFor(d => d.Supplier)
                 .NotNull().WithMessage("The supplier is required for products.")
                 .When(d => d.Type == TypeServiceOrProduct.Product);

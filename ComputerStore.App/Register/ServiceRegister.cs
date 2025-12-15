@@ -25,13 +25,31 @@ namespace ComputerStore.App.Register
             _supplierService = supplierService;
             _serviceService = serviceService;
             InitializeComponent();
-           
+            LoadData();
+            AtualizaSupplierAndStorage();
+
         }
 
         private void FormToObjet(ProductOrService service)
         {
-            service.Type = TypeServiceOrProduct.Service;
+            if (rbProduct.Checked)
+            {
+                service.Type = TypeServiceOrProduct.Product;
+            }
+            else
+            {
+                service.Type = TypeServiceOrProduct.Service;
+            }
+
+
+            if (txtStorage.Enabled == false)
+            {
+                txtStorage.Text = "0";
+            }
+
+
             service.Name = txtName.Text;
+
             if (!decimal.TryParse(txtPrice.Text, out decimal priceValue))
             {
                 MessageBox.Show(@"The price shown is invalid. Please enter only numbers.",
@@ -40,8 +58,25 @@ namespace ComputerStore.App.Register
             }
 
             service.Price = priceValue;
-            service.Supplier = null;
-            service.Storage = 0;
+
+            if (cbSupplier.Enabled && cbSupplier.SelectedItem != null)
+            {
+                service.Supplier = cbSupplier.SelectedItem as Supplier;
+            }
+            else
+            {
+                service.Supplier = null;
+            }
+
+            int storageValue = 0;
+            if (txtStorage.Enabled && !int.TryParse(txtStorage.Text, out storageValue))
+            {
+                MessageBox.Show(@"The storage shown is invalid. Please enter only numbers.",
+                    "Computer Store",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            service.Storage = storageValue;
         }
 
         private void LoadData()
@@ -66,7 +101,7 @@ namespace ComputerStore.App.Register
                 var service = new ProductOrService();
                 FormToObjet(service);
                 _serviceService.Add<ProductOrService, ProductOrService, ProductOrServiceValidator>(service);
-                MessageBox.Show("Service added successfully.",
+                MessageBox.Show("Added successfully.",
                     "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
@@ -107,6 +142,22 @@ namespace ComputerStore.App.Register
                     if (index >= 0) { cbSupplier.SelectedIndex = index; }
                 }
             }
+        }
+
+        private void rbProduct_CheckedChanged(object sender)
+        {
+            AtualizaSupplierAndStorage();
+        }
+
+        private void rbService_CheckedChanged(object sender)
+        {
+            AtualizaSupplierAndStorage();
+        }
+
+        private void AtualizaSupplierAndStorage()
+        {
+            cbSupplier.Enabled = rbProduct.Checked;
+            txtStorage.Enabled = rbProduct.Checked;
         }
     }
 }

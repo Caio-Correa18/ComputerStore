@@ -45,12 +45,12 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(505, 469);
+            btnSave.Location = new Point(485, 467);
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(698, 469);
+            btnCancel.Location = new Point(677, 467);
             // 
             // bigLabel1
             // 
@@ -130,6 +130,7 @@
             rbService.TabIndex = 7;
             rbService.Text = "Service";
             rbService.Transparent = false;
+            rbService.CheckedChanged += rbService_CheckedChanged;
             // 
             // rbProduct
             // 
@@ -145,6 +146,7 @@
             rbProduct.TabIndex = 8;
             rbProduct.Text = "Product";
             rbProduct.Transparent = false;
+            rbProduct.CheckedChanged += rbProduct_CheckedChanged;
             // 
             // label3
             // 
