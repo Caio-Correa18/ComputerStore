@@ -29,8 +29,16 @@ namespace ComputerStore.App.Register
         {
             service.Type = TypeServiceOrProduct.Service;
             service.Name = txtName.Text;
-            decimal.TryParse(txtPrice.Text, out decimal priceValue);
+            if(!decimal.TryParse(txtPrice.Text, out decimal priceValue))
+            {
+                MessageBox.Show(@"The price shown is invalid. Please enter only numbers.",
+                    "Computer Store",
+                    MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            
             service.Price = priceValue;
+            service.Supplier = null;
+            service.Storage = 0;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -40,32 +48,23 @@ namespace ComputerStore.App.Register
 
         private void Save()
         {
-            var service = new ProductOrService();
-            FormToObjet(service);
-            var existingService = _serviceService.Get<ProductOrService>()
-                .FirstOrDefault(s => s.Name == service.Name);
             
+                     
+            try
+            {
+                var service = new ProductOrService();
+                FormToObjet(service);
+                _serviceService.Add<ProductOrService, ProductOrService, ProductOrServiceValidator>(service);
+                MessageBox.Show("Service added successfully.",
+                    "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Computer Store",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearFields();
+            }
             
-            if (existingService != null)
-            {
-                MessageBox.Show("This service already exists. Try other name"
-                    ,@"ComputerStore",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                try
-                {
-                    _serviceService.Add<ProductOrService, ProductOrService, ProductOrServiceValidator>(service);
-                    MessageBox.Show("Service added successfully.",
-                        "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, @"Computer Store",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ClearFields();
-                }
-            }
 
             
         }

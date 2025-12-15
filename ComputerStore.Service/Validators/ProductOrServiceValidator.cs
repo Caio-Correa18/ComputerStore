@@ -12,7 +12,8 @@ namespace ComputerStore.Service.Validators
             RuleFor(d => d.Name)
                 .NotEmpty().WithMessage("The name of the ticket or product is required.");
             RuleFor(d => d.Price)
-                .NotEmpty().WithMessage("The price of the item or product is mandatory.");
+                .NotEmpty().WithMessage("The price of the item or product is mandatory.")
+                .GreaterThan(0).WithMessage("The price cannot be negative.");
             RuleFor(d => d.Type)
                 .NotEmpty().WithMessage("The type cannot be empty.");
             RuleFor(d => d.Supplier)

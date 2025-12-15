@@ -44,12 +44,12 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(643, 617);
+            btnSave.Location = new Point(683, 613);
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(850, 599);
+            btnCancel.Location = new Point(889, 613);
             // 
             // txtName
             // 
@@ -104,7 +104,6 @@
             // 
             // rdbPerson
             // 
-            rdbPerson.CausesValidation = false;
             rdbPerson.Checked = true;
             rdbPerson.Customization = "PDw8/+3t7f/m5ub/p6en/2RkZP8=";
             rdbPerson.Field = 16;

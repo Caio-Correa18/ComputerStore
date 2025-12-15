@@ -66,17 +66,23 @@ namespace ComputerStore.App.Infra
             services.AddTransient<ClientRegister, ClientRegister>();
             services.AddTransient<SupplierRegister, SupplierRegister>();
             services.AddTransient<ServiceRegister, ServiceRegister>();
+            services.AddTransient<TicketRegister, TicketRegister>();
 
             #endregion
 
             services.AddSingleton(
                 new MapperConfiguration(
                     config => {
-                        config.CreateMap<User, UserViewModel>();
-                        config.CreateMap<Supplier, SupplierViewModel>();
-                        config.CreateMap<Client, ClientViewModel>();
-                        config.CreateMap<Ticket, TicketViewModel>();
-                        config.CreateMap<ProductOrService, ProductOrServiceViewModel>();
+                        config.CreateMap<User, UserViewModel>()
+                        .ReverseMap();
+                        config.CreateMap<Supplier, SupplierViewModel>()
+                        .ReverseMap();
+                        config.CreateMap<Client, ClientViewModel>()
+                        .ReverseMap();
+                        config.CreateMap<Ticket, TicketViewModel>()
+                        .ReverseMap();
+                        config.CreateMap<ProductOrService, ProductOrServiceViewModel>()
+                        .ReverseMap();
                     },
                     NullLoggerFactory.Instance).CreateMapper()
                 );

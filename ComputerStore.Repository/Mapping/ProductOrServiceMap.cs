@@ -17,6 +17,8 @@ namespace ComputerStore.Repository.Mapping
             builder.Property(x => x.Type).HasConversion<string>().IsRequired();
             builder.HasOne(x => x.Supplier);
 
+            builder.HasIndex(x => x.Name).IsUnique();
+
         }
     }
     

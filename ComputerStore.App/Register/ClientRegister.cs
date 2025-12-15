@@ -63,6 +63,7 @@ namespace ComputerStore.App.Register
                 _clientService.Add<Client,Client,ClientValidator>(client);
                 MessageBox.Show("Client added successfully.",
                     "Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -43,12 +43,12 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(646, 593);
+            btnSave.Location = new Point(632, 601);
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(867, 593);
+            btnCancel.Location = new Point(853, 601);
             // 
             // bigLabel1
             // 

@@ -31,5 +31,24 @@ namespace ComputerStore.App
             var clientForm = ConfigureDI.serviceProvider!.GetService<ClientRegister>();
             clientForm.ShowDialog();
         }
+
+        private void btnServiceRegister_Click(object sender, EventArgs e)
+        {
+            var serviceForm = ConfigureDI.serviceProvider!.GetService<ServiceRegister>();
+            serviceForm.ShowDialog();
+
+        }
+
+        private void btnSupplierRegister_Click(object sender, EventArgs e)
+        {
+            var supplierForm = ConfigureDI.serviceProvider!.GetService<SupplierRegister>();
+            supplierForm.ShowDialog();
+        }
+
+        private void btnNewTicket_Click(object sender, EventArgs e)
+        {
+            var ticketForm = ConfigureDI.serviceProvider!.GetService<TicketRegister>();
+            ticketForm.ShowDialog();
+        }
     }
 }

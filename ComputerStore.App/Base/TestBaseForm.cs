@@ -13,6 +13,7 @@ namespace ComputerStore.App.Base
 {
     public partial class TestBaseForm : LostForm
     {
+        protected bool IsEditMode = false;
         public TestBaseForm()
         {
             InitializeComponent();

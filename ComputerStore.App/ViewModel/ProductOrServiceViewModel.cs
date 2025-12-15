@@ -14,7 +14,7 @@ namespace ComputerStore.App.ViewModel
         public string Name { get; set; }
         public int Storage { get; set; }
         public decimal Price { get; set; }
-        public Supplier Supplier { get; set; }
+        public Supplier? Supplier { get; set; }
         public TypeServiceOrProduct Type { get; set; }
 
     }

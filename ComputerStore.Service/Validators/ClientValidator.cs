@@ -27,7 +27,7 @@ namespace ComputerStore.Service.Validators
                 .MinimumLength(11).WithMessage("A CPF (Brazilian taxpayer ID) can only have 11 digits.")
                 .When(d => d.TypeCLient == TypeClient.Person);
             RuleFor(d => d.TypeCLient)
-                .NotEmpty().WithMessage("The type cannot be empty.");
+                .IsInEnum().WithMessage("The type cannot be empty.");
         }
 
     }

@@ -30,7 +30,7 @@ namespace ComputerStore.App.Others
 
             else
             {
-                Session.LoggedInUser = user;
+                
                 MessageBox.Show($"Welcome, {user.Name}!", "to Computer Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 Close();

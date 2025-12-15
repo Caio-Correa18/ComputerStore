@@ -16,13 +16,10 @@ namespace ComputerStore.Service.Validators
             RuleFor(d => d.Description)
                 .NotEmpty().WithMessage("Description is required");
             RuleFor(d => d.Solution)
-                .NotEmpty().WithMessage("The solution is required.");
-            RuleFor(d => d.Budget)
-                .NotEmpty().WithMessage("A budget is required.");
-            RuleFor(d => d.TicketUsers)
-                .NotEmpty().WithMessage("The list of users is required.");
-            RuleFor(d => d.SaleItens)
-                .NotEmpty().WithMessage("The items for sale are required.");
+                .NotEmpty().WithMessage("The solution is required.")
+                .When(d => d.Status == "Finished");
+
+     
 
         }
     }
@@ -36,8 +33,7 @@ namespace ComputerStore.Service.Validators
                 .NotEmpty().WithMessage("A ticket is required.");
             RuleFor(d => d.User)
                 .NotEmpty().WithMessage("The user is required.");
-            RuleFor(d => d.AssignmentDate)
-                .NotEmpty().WithMessage("The assignment date is required.");
+            
 
         }
     }
