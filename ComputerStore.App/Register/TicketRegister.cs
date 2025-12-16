@@ -179,7 +179,7 @@ namespace ComputerStore.App.Register
             {
                 foreach (ProductOrService item in listbox.CheckedItems)
                 {
-                    // Só adiciona se o item AINDA NÃO estiver na lista do ticket
+                    
                     if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
                     {
                         var newSale = new Sale
@@ -192,7 +192,7 @@ namespace ComputerStore.App.Register
                         };
                         ticket.SaleItens.Add(newSale);
                     }
-                    // Soma ao orçamento
+                    
                     ticket.Budget += item.Price;
                 }
             }
@@ -200,28 +200,7 @@ namespace ComputerStore.App.Register
             AddItemsFromList(cblService);
             AddItemsFromList(cblProduct);
 
-
-
-            /*foreach (ProductOrService item in cblService.CheckedItems)
-            {
-                
-                if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
-                {
-                    var newSale = new Sale
-                    {
-                        ProductOrService = item,
-                        Quantity = 1,
-                        UnityValue = item.Price,
-                        TotalValue = item.Price * 1,
-                        Ticket = ticket
-                    };
-                    ticket.SaleItens.Add(newSale);
-
-                }
-                decimal aux = item.Price;
-
-                ticket.Budget += aux;
-            }*/
+           
         }
 
         

@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPage1 = new TabPage();
+            btnNewTicket = new ReaLTaiizor.Controls.Button();
             btnServiceRegister = new ReaLTaiizor.Controls.Button();
             btnSupplierRegister = new ReaLTaiizor.Controls.Button();
             btnClientRegister = new ReaLTaiizor.Controls.Button();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             imageList1 = new ImageList(components);
-            btnNewTicket = new ReaLTaiizor.Controls.Button();
+            lvTickets = new ReaLTaiizor.Controls.PoisonListView();
             airTabPage1.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
@@ -62,7 +63,7 @@
             airTabPage1.SelectedTabBackColor = Color.FromArgb(255, 239, 214);
             airTabPage1.SelectedTextColor = Color.Black;
             airTabPage1.ShowOuterBorders = false;
-            airTabPage1.Size = new Size(1077, 683);
+            airTabPage1.Size = new Size(1347, 781);
             airTabPage1.SizeMode = TabSizeMode.Fixed;
             airTabPage1.SquareColor = Color.FromArgb(78, 87, 100);
             airTabPage1.TabCursor = Cursors.Hand;
@@ -71,6 +72,7 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage1.Controls.Add(lvTickets);
             tabPage1.Controls.Add(btnNewTicket);
             tabPage1.Controls.Add(btnServiceRegister);
             tabPage1.Controls.Add(btnSupplierRegister);
@@ -79,8 +81,28 @@
             tabPage1.Location = new Point(79, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(994, 675);
+            tabPage1.Size = new Size(1264, 773);
             tabPage1.TabIndex = 0;
+            // 
+            // btnNewTicket
+            // 
+            btnNewTicket.BackColor = Color.Transparent;
+            btnNewTicket.BorderColor = Color.FromArgb(32, 34, 37);
+            btnNewTicket.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            btnNewTicket.EnteredColor = Color.FromArgb(60, 166, 166);
+            btnNewTicket.Font = new Font("Microsoft Sans Serif", 12F);
+            btnNewTicket.Image = null;
+            btnNewTicket.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNewTicket.InactiveColor = Color.FromArgb(60, 166, 166);
+            btnNewTicket.Location = new Point(486, 310);
+            btnNewTicket.Name = "btnNewTicket";
+            btnNewTicket.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            btnNewTicket.PressedColor = Color.FromArgb(165, 37, 37);
+            btnNewTicket.Size = new Size(132, 57);
+            btnNewTicket.TabIndex = 4;
+            btnNewTicket.Text = "New Ticket";
+            btnNewTicket.TextAlignment = StringAlignment.Center;
+            btnNewTicket.Click += btnNewTicket_Click;
             // 
             // btnServiceRegister
             // 
@@ -92,7 +114,7 @@
             btnServiceRegister.Image = null;
             btnServiceRegister.ImageAlign = ContentAlignment.MiddleLeft;
             btnServiceRegister.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnServiceRegister.Location = new Point(735, 325);
+            btnServiceRegister.Location = new Point(817, 545);
             btnServiceRegister.Name = "btnServiceRegister";
             btnServiceRegister.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnServiceRegister.PressedColor = Color.FromArgb(165, 37, 37);
@@ -112,7 +134,7 @@
             btnSupplierRegister.Image = null;
             btnSupplierRegister.ImageAlign = ContentAlignment.MiddleLeft;
             btnSupplierRegister.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnSupplierRegister.Location = new Point(735, 418);
+            btnSupplierRegister.Location = new Point(652, 545);
             btnSupplierRegister.Name = "btnSupplierRegister";
             btnSupplierRegister.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnSupplierRegister.PressedColor = Color.FromArgb(165, 37, 37);
@@ -132,7 +154,7 @@
             btnClientRegister.Image = null;
             btnClientRegister.ImageAlign = ContentAlignment.MiddleLeft;
             btnClientRegister.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnClientRegister.Location = new Point(735, 240);
+            btnClientRegister.Location = new Point(1006, 545);
             btnClientRegister.Name = "btnClientRegister";
             btnClientRegister.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnClientRegister.PressedColor = Color.FromArgb(165, 37, 37);
@@ -149,7 +171,7 @@
             tabPage2.Location = new Point(79, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(994, 675);
+            tabPage2.Size = new Size(1264, 773);
             tabPage2.TabIndex = 1;
             // 
             // tabPage3
@@ -176,32 +198,25 @@
             imageList1.Images.SetKeyName(6, "plus.png");
             imageList1.Images.SetKeyName(7, "imac.png");
             // 
-            // btnNewTicket
+            // lvTickets
             // 
-            btnNewTicket.BackColor = Color.Transparent;
-            btnNewTicket.BorderColor = Color.FromArgb(32, 34, 37);
-            btnNewTicket.EnteredBorderColor = Color.FromArgb(165, 37, 37);
-            btnNewTicket.EnteredColor = Color.FromArgb(60, 166, 166);
-            btnNewTicket.Font = new Font("Microsoft Sans Serif", 12F);
-            btnNewTicket.Image = null;
-            btnNewTicket.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNewTicket.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnNewTicket.Location = new Point(89, 113);
-            btnNewTicket.Name = "btnNewTicket";
-            btnNewTicket.PressedBorderColor = Color.FromArgb(165, 37, 37);
-            btnNewTicket.PressedColor = Color.FromArgb(165, 37, 37);
-            btnNewTicket.Size = new Size(132, 57);
-            btnNewTicket.TabIndex = 4;
-            btnNewTicket.Text = "New Ticket";
-            btnNewTicket.TextAlignment = StringAlignment.Center;
-            btnNewTicket.Click += btnNewTicket_Click;
+            lvTickets.Font = new Font("Segoe UI", 12F);
+            lvTickets.FullRowSelect = true;
+            lvTickets.HideSelection = true;
+            lvTickets.Location = new Point(74, 59);
+            lvTickets.Name = "lvTickets";
+            lvTickets.OwnerDraw = true;
+            lvTickets.Size = new Size(794, 189);
+            lvTickets.TabIndex = 5;
+            lvTickets.UseCompatibleStateImageBehavior = false;
+            lvTickets.UseSelectable = true;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1082, 720);
+            ClientSize = new Size(1352, 818);
             Controls.Add(airTabPage1);
             HeaderColor = Color.FromArgb(1, 46, 64);
             Image = Properties.Resources.ComputerStoreIcon;
@@ -227,5 +242,6 @@
         private ReaLTaiizor.Controls.Button btnServiceRegister;
         private ReaLTaiizor.Controls.Button btnSupplierRegister;
         private ReaLTaiizor.Controls.Button btnNewTicket;
+        private ReaLTaiizor.Controls.PoisonListView lvTickets;
     }
 }
