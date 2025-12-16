@@ -361,7 +361,7 @@ namespace ComputerStore.App.Register
                 cblService.SetItemChecked(i, false);
             }
 
-            // Limpa os itens marcados na lista de Produtos
+           
             for (int i = 0; i < cblProduct.Items.Count; i++)
             {
                 cblProduct.SetItemChecked(i, false);

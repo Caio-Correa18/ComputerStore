@@ -87,14 +87,8 @@ namespace ComputerStore.App
 
 
                 var includes = new List<string> { "Client" };
-
-                // Passamos essa lista para o método Get, igualzinho ao código do Book
                 var result = _ticketService.Get<Ticket>(includes);
-
-                // Tratamento de nulo igual ao exemplo (?? new List...)
                 var allTickets = result?.ToList() ?? new List<Ticket>();
-
-                // Filtramos os iniciados (mantendo sua regra de negócio original)
                 var ticketsIniciados = allTickets
                                         .Where(t => t.Status == "Started")
                                         .ToList();
@@ -105,9 +99,7 @@ namespace ComputerStore.App
 
                     item.SubItems.Add(ticket.IssueDate.ToShortDateString());
 
-                    // 2. RECUPERANDO O NOME COM SEGURANÇA
-                    // Como passamos "Client" na lista de includes, o Entity Framework preencheu essa propriedade.
-                    // Usamos a mesma lógica de verificação do exemplo Book (GetAuthorName)
+                    
                     string clientName = ticket.Client != null ? ticket.Client.Name : "Unknown";
                     item.SubItems.Add(clientName);
 
@@ -133,14 +125,8 @@ namespace ComputerStore.App
 
 
                 var includes = new List<string> { "Client" };
-
-                // Passamos essa lista para o método Get, igualzinho ao código do Book
                 var result = _ticketService.Get<Ticket>(includes);
-
-                // Tratamento de nulo igual ao exemplo (?? new List...)
                 var allTickets = result?.ToList() ?? new List<Ticket>();
-
-                // Filtramos os iniciados (mantendo sua regra de negócio original)
                 var ticketsFinished = allTickets
                                         .Where(t => t.Status == "Finished")
                                         .ToList();
@@ -151,9 +137,7 @@ namespace ComputerStore.App
 
                     item.SubItems.Add(ticket.IssueDate.ToShortDateString());
 
-                    // 2. RECUPERANDO O NOME COM SEGURANÇA
-                    // Como passamos "Client" na lista de includes, o Entity Framework preencheu essa propriedade.
-                    // Usamos a mesma lógica de verificação do exemplo Book (GetAuthorName)
+
                     string clientName = ticket.Client != null ? ticket.Client.Name : "Unknown";
                     item.SubItems.Add(clientName);
 
@@ -215,19 +199,18 @@ namespace ComputerStore.App
         {
             var selectedTicket = GetSelectedTicket();
 
-            // Verifica se tem algo selecionado
             if (selectedTicket == null)
             {
                 MessageBox.Show("Please select a ticket from the list to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Abre o formulário de Registro passando o Ticket selecionado (Modo Edição)
+
             using (var form = new TicketRegister(selectedTicket))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // Se salvou com sucesso, recarrega a lista para mostrar as alterações
+
                     CarregarTicketsIniciados();
                     CarregarTicketsFinalizados();
                 }
@@ -238,20 +221,21 @@ namespace ComputerStore.App
         {
             var selectedTicket = GetSelectedTicketFinished();
 
-            // Verifica se tem algo selecionado
+            
             if (selectedTicket == null)
             {
                 MessageBox.Show("Please select a ticket from the list to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Abre o formulário de Registro passando o Ticket selecionado (Modo Edição)
+            
             using (var form = new TicketRegister(selectedTicket))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // Se salvou com sucesso, recarrega a lista para mostrar as alterações
+                    
                     CarregarTicketsFinalizados();
+                    CarregarTicketsIniciados();
                 }
             }
         }
@@ -270,16 +254,14 @@ namespace ComputerStore.App
         {
             if (airTabPage1.SelectedTab == tabPage1)
             {
-
-                Refresh();
+                CarregarTicketsIniciados();
+                CarregarTicketsFinalizados();
             }
 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // 1. Tenta pegar o ticket selecionado.
-            // Primeiro verificamos na lista de "Iniciados", se não achar, tentamos na de "Finalizados".
             Ticket selectedTicket = GetSelectedTicket();
 
             if (selectedTicket == null)
@@ -287,15 +269,13 @@ namespace ComputerStore.App
                 selectedTicket = GetSelectedTicketFinished();
             }
 
-            // 2. Se não encontrou em nenhuma das duas, avisa o usuário
             if (selectedTicket == null)
             {
                 MessageBox.Show("Please select a ticket to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 3. Pergunta de confirmação (Seguindo o padrão do Book, mas usando ID e Descrição do Ticket)
-            // Fiz um pequeno tratamento na descrição para não ficar gigante na mensagem se o texto for longo
+
             string descriptionPreview = selectedTicket.Description?.Length > 30
                                         ? selectedTicket.Description.Substring(0, 30) + "..."
                                         : selectedTicket.Description;
@@ -306,7 +286,7 @@ namespace ComputerStore.App
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-            // 4. Executa a exclusão se o usuário disser "Sim"
+
             if (result == DialogResult.Yes)
             {
                 try
@@ -314,8 +294,9 @@ namespace ComputerStore.App
                     _ticketService.Delete(selectedTicket.Id);
                     MessageBox.Show("Ticket removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 5. Atualiza as listas para o item sumir da tela
-                    Refresh();
+                    
+                    CarregarTicketsFinalizados();
+                    CarregarTicketsIniciados();
                 }
                 catch (Exception ex)
                 {
