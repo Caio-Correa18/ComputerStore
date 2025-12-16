@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ReaLTaiizor.Forms;
 using Microsoft.EntityFrameworkCore;
 using ComputerStore.Service.Service;
+using ComputerStore.App.ViewModel;
 
 namespace ComputerStore.App
 {
@@ -46,13 +47,13 @@ namespace ComputerStore.App
 
         private void ConfigListView()
         {
-            lvTickets.View = View.Details; 
+            lvTickets.View = View.Details;
             lvTickets.FullRowSelect = true;
             lvTickets.GridLines = true;
 
             lvTickets.Columns.Clear();
 
-            
+
             lvTickets.Columns.Add("ID", 50);
             lvTickets.Columns.Add("Date", 100);
             lvTickets.Columns.Add("Client", 200);
@@ -67,7 +68,7 @@ namespace ComputerStore.App
             {
                 lvTickets.Items.Clear();
 
-               
+
                 var includes = new List<string> { "Client" };
 
                 // Passamos essa lista para o método Get, igualzinho ao código do Book
@@ -112,6 +113,19 @@ namespace ComputerStore.App
 
 
 
+        private Ticket GetSelectedTicket()
+        {
+            if (lvTickets.SelectedItems.Count > 0)
+            {
+                // Recupera o objeto Ticket que guardamos na propriedade .Tag
+                return (Ticket)lvTickets.SelectedItems[0].Tag;
+            }
+            return null;
+        }
+
+
+
+
         private void btnClientRegister_Click(object sender, EventArgs e)
         {
             var clientForm = ConfigureDI.serviceProvider!.GetService<ClientRegister>();
@@ -135,10 +149,34 @@ namespace ComputerStore.App
         {
             var ticketForm = ConfigureDI.serviceProvider!.GetService<TicketRegister>();
             ticketForm.ShowDialog();
-            if(DialogResult == DialogResult.OK)
+            if (DialogResult == DialogResult.OK)
             {
                 CarregarTicketsIniciados();
             }
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var selectedTicket = GetSelectedTicket();
+
+            // Verifica se tem algo selecionado
+            if (selectedTicket == null)
+            {
+                MessageBox.Show("Please select a ticket from the list to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Abre o formulário de Registro passando o Ticket selecionado (Modo Edição)
+            using (var form = new TicketRegister(selectedTicket))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // Se salvou com sucesso, recarrega a lista para mostrar as alterações
+                    CarregarTicketsIniciados();
+                }
+            }
+        }
+
+
     }
 }

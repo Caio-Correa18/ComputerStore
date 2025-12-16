@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPage1 = new TabPage();
+            btnEdit = new ReaLTaiizor.Controls.Button();
+            lvTickets = new ReaLTaiizor.Controls.PoisonListView();
             btnNewTicket = new ReaLTaiizor.Controls.Button();
             btnServiceRegister = new ReaLTaiizor.Controls.Button();
             btnSupplierRegister = new ReaLTaiizor.Controls.Button();
@@ -39,7 +41,6 @@
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             imageList1 = new ImageList(components);
-            lvTickets = new ReaLTaiizor.Controls.PoisonListView();
             airTabPage1.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
@@ -72,6 +73,7 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage1.Controls.Add(btnEdit);
             tabPage1.Controls.Add(lvTickets);
             tabPage1.Controls.Add(btnNewTicket);
             tabPage1.Controls.Add(btnServiceRegister);
@@ -84,6 +86,41 @@
             tabPage1.Size = new Size(1264, 773);
             tabPage1.TabIndex = 0;
             // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.Transparent;
+            btnEdit.BorderColor = Color.FromArgb(32, 34, 37);
+            btnEdit.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            btnEdit.EnteredColor = Color.FromArgb(60, 166, 166);
+            btnEdit.Font = new Font("Microsoft Sans Serif", 12F);
+            btnEdit.Image = null;
+            btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEdit.InactiveColor = Color.FromArgb(60, 166, 166);
+            btnEdit.Location = new Point(925, 338);
+            btnEdit.Name = "btnEdit";
+            btnEdit.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            btnEdit.PressedColor = Color.FromArgb(165, 37, 37);
+            btnEdit.Size = new Size(132, 57);
+            btnEdit.TabIndex = 6;
+            btnEdit.Text = "Edit";
+            btnEdit.TextAlignment = StringAlignment.Center;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // lvTickets
+            // 
+            lvTickets.Font = new Font("Segoe UI", 12F);
+            lvTickets.FullRowSelect = true;
+            lvTickets.GridLines = true;
+            lvTickets.HideSelection = true;
+            lvTickets.Location = new Point(31, 65);
+            lvTickets.Name = "lvTickets";
+            lvTickets.OwnerDraw = true;
+            lvTickets.Size = new Size(1107, 238);
+            lvTickets.TabIndex = 5;
+            lvTickets.UseCompatibleStateImageBehavior = false;
+            lvTickets.UseSelectable = true;
+            lvTickets.View = View.Details;
+            // 
             // btnNewTicket
             // 
             btnNewTicket.BackColor = Color.Transparent;
@@ -94,7 +131,7 @@
             btnNewTicket.Image = null;
             btnNewTicket.ImageAlign = ContentAlignment.MiddleLeft;
             btnNewTicket.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnNewTicket.Location = new Point(117, 348);
+            btnNewTicket.Location = new Point(730, 338);
             btnNewTicket.Name = "btnNewTicket";
             btnNewTicket.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnNewTicket.PressedColor = Color.FromArgb(165, 37, 37);
@@ -181,7 +218,7 @@
             tabPage3.Location = new Point(79, 4);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(994, 675);
+            tabPage3.Size = new Size(1264, 773);
             tabPage3.TabIndex = 2;
             // 
             // imageList1
@@ -197,21 +234,6 @@
             imageList1.Images.SetKeyName(5, "plus.png");
             imageList1.Images.SetKeyName(6, "plus.png");
             imageList1.Images.SetKeyName(7, "imac.png");
-            // 
-            // lvTickets
-            // 
-            lvTickets.Font = new Font("Segoe UI", 12F);
-            lvTickets.FullRowSelect = true;
-            lvTickets.GridLines = true;
-            lvTickets.HideSelection = true;
-            lvTickets.Location = new Point(31, 65);
-            lvTickets.Name = "lvTickets";
-            lvTickets.OwnerDraw = true;
-            lvTickets.Size = new Size(1107, 238);
-            lvTickets.TabIndex = 5;
-            lvTickets.UseCompatibleStateImageBehavior = false;
-            lvTickets.UseSelectable = true;
-            lvTickets.View = View.Details;
             // 
             // MainForm
             // 
@@ -245,5 +267,6 @@
         private ReaLTaiizor.Controls.Button btnSupplierRegister;
         private ReaLTaiizor.Controls.Button btnNewTicket;
         private ReaLTaiizor.Controls.PoisonListView lvTickets;
+        private ReaLTaiizor.Controls.Button btnEdit;
     }
 }
