@@ -49,7 +49,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ButtonHighlight;
-            label1.Location = new Point(76, 155);
+            label1.Location = new Point(105, 146);
             label1.Name = "label1";
             label1.Size = new Size(68, 28);
             label1.TabIndex = 3;
@@ -59,7 +59,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(76, 226);
+            label2.Location = new Point(108, 226);
             label2.Name = "label2";
             label2.Size = new Size(65, 28);
             label2.TabIndex = 4;
@@ -125,7 +125,7 @@
             txtPassword.Font = new Font("Tahoma", 11F);
             txtPassword.ForeColor = Color.DimGray;
             txtPassword.Image = null;
-            txtPassword.Location = new Point(179, 292);
+            txtPassword.Location = new Point(194, 292);
             txtPassword.MaxLength = 32767;
             txtPassword.Multiline = false;
             txtPassword.Name = "txtPassword";
@@ -133,7 +133,7 @@
             txtPassword.Size = new Size(625, 46);
             txtPassword.TabIndex = 9;
             txtPassword.TextAlignment = HorizontalAlignment.Left;
-            txtPassword.UseSystemPasswordChar = false;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // UserRegister
             // 

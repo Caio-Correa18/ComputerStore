@@ -82,7 +82,7 @@
             txtPassword.MaxLength = 32767;
             txtPassword.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '\0';
+            txtPassword.PasswordChar = '*';
             txtPassword.PrefixSuffixText = null;
             txtPassword.ReadOnly = false;
             txtPassword.RightToLeft = RightToLeft.No;

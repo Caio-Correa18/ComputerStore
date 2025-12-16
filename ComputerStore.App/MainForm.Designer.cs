@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             airTabPage1 = new ReaLTaiizor.Controls.AirTabPage();
             tabPage1 = new TabPage();
+            btnDelete = new ReaLTaiizor.Controls.Button();
             btnEditFinished = new ReaLTaiizor.Controls.Button();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             lvTicketsFinished = new ReaLTaiizor.Controls.PoisonListView();
@@ -65,15 +66,17 @@
             airTabPage1.SelectedTabBackColor = Color.FromArgb(255, 239, 214);
             airTabPage1.SelectedTextColor = Color.Black;
             airTabPage1.ShowOuterBorders = false;
-            airTabPage1.Size = new Size(1363, 798);
+            airTabPage1.Size = new Size(1390, 828);
             airTabPage1.SizeMode = TabSizeMode.Fixed;
             airTabPage1.SquareColor = Color.FromArgb(78, 87, 100);
             airTabPage1.TabCursor = Cursors.Hand;
             airTabPage1.TabIndex = 0;
+            airTabPage1.SelectedIndexChanged += tabPageMain_Click;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage1.Controls.Add(btnDelete);
             tabPage1.Controls.Add(btnEditFinished);
             tabPage1.Controls.Add(bigLabel2);
             tabPage1.Controls.Add(lvTicketsFinished);
@@ -85,8 +88,28 @@
             tabPage1.Location = new Point(79, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1280, 790);
+            tabPage1.Size = new Size(1307, 820);
             tabPage1.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Transparent;
+            btnDelete.BorderColor = Color.FromArgb(32, 34, 37);
+            btnDelete.EnteredBorderColor = Color.FromArgb(165, 37, 37);
+            btnDelete.EnteredColor = Color.FromArgb(60, 166, 166);
+            btnDelete.Font = new Font("Microsoft Sans Serif", 12F);
+            btnDelete.Image = null;
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDelete.InactiveColor = Color.FromArgb(60, 166, 166);
+            btnDelete.Location = new Point(1162, 355);
+            btnDelete.Name = "btnDelete";
+            btnDelete.PressedBorderColor = Color.FromArgb(165, 37, 37);
+            btnDelete.PressedColor = Color.FromArgb(165, 37, 37);
+            btnDelete.Size = new Size(132, 57);
+            btnDelete.TabIndex = 11;
+            btnDelete.Text = "Delete";
+            btnDelete.TextAlignment = StringAlignment.Center;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEditFinished
             // 
@@ -157,7 +180,7 @@
             btnEdit.Image = null;
             btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
             btnEdit.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnEdit.Location = new Point(1061, 355);
+            btnEdit.Location = new Point(1009, 355);
             btnEdit.Name = "btnEdit";
             btnEdit.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnEdit.PressedColor = Color.FromArgb(165, 37, 37);
@@ -192,7 +215,7 @@
             btnNewTicket.Image = null;
             btnNewTicket.ImageAlign = ContentAlignment.MiddleLeft;
             btnNewTicket.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnNewTicket.Location = new Point(881, 355);
+            btnNewTicket.Location = new Point(857, 355);
             btnNewTicket.Name = "btnNewTicket";
             btnNewTicket.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnNewTicket.PressedColor = Color.FromArgb(165, 37, 37);
@@ -209,7 +232,7 @@
             tabPage2.Location = new Point(79, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1280, 790);
+            tabPage2.Size = new Size(1307, 820);
             tabPage2.TabIndex = 1;
             // 
             // tabPage3
@@ -219,7 +242,7 @@
             tabPage3.Location = new Point(79, 4);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1280, 790);
+            tabPage3.Size = new Size(1307, 820);
             tabPage3.TabIndex = 2;
             // 
             // imageList1
@@ -241,7 +264,7 @@
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1368, 835);
+            ClientSize = new Size(1395, 865);
             Controls.Add(airTabPage1);
             HeaderColor = Color.FromArgb(1, 46, 64);
             Image = Properties.Resources.ComputerStoreIcon;
@@ -271,5 +294,6 @@
         private ReaLTaiizor.Controls.PoisonListView lvTicketsFinished;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
         private ReaLTaiizor.Controls.Button btnEditFinished;
+        private ReaLTaiizor.Controls.Button btnDelete;
     }
 }

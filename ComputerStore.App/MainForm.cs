@@ -83,7 +83,7 @@ namespace ComputerStore.App
         {
             try
             {
-                lvTicketsFinished.Items.Clear();
+                lvTickets.Items.Clear();
 
 
                 var includes = new List<string> { "Client" };
@@ -189,7 +189,7 @@ namespace ComputerStore.App
         {
             if (lvTicketsFinished.SelectedItems.Count > 0)
             {
-                
+
                 return (Ticket)lvTicketsFinished.SelectedItems[0].Tag;
             }
             return null;
@@ -198,31 +198,15 @@ namespace ComputerStore.App
 
 
 
-        private void btnClientRegister_Click(object sender, EventArgs e)
-        {
-            var clientForm = ConfigureDI.serviceProvider!.GetService<ClientRegister>();
-            clientForm.ShowDialog();
-        }
-
-        private void btnServiceRegister_Click(object sender, EventArgs e)
-        {
-            var serviceForm = ConfigureDI.serviceProvider!.GetService<ServiceRegister>();
-            serviceForm.ShowDialog();
-
-        }
-
-        private void btnSupplierRegister_Click(object sender, EventArgs e)
-        {
-            var supplierForm = ConfigureDI.serviceProvider!.GetService<SupplierRegister>();
-            supplierForm.ShowDialog();
-        }
+       
 
         private void btnNewTicket_Click(object sender, EventArgs e)
         {
             var ticketForm = ConfigureDI.serviceProvider!.GetService<TicketRegister>();
             ticketForm.ShowDialog();
-            if (DialogResult == DialogResult.OK)
+            if (ticketForm.DialogResult == DialogResult.OK)
             {
+                CarregarTicketsFinalizados();
                 CarregarTicketsIniciados();
             }
         }
@@ -245,6 +229,7 @@ namespace ComputerStore.App
                 {
                     // Se salvou com sucesso, recarrega a lista para mostrar as alterações
                     CarregarTicketsIniciados();
+                    CarregarTicketsFinalizados();
                 }
             }
         }
@@ -272,15 +257,71 @@ namespace ComputerStore.App
         }
 
 
+        public void Refresh()
+        {
+            lvTicketsFinished.Items.Clear();
+            lvTickets.Items.Clear();
+            CarregarTicketsIniciados();
+            CarregarTicketsFinalizados();
+        }
+
+
         private void tabPageMain_Click(object sender, EventArgs e)
         {
             if (airTabPage1.SelectedTab == tabPage1)
             {
-                CarregarTicketsIniciados();
-                CarregarTicketsFinalizados();
+
+                Refresh();
             }
-            
+
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // 1. Tenta pegar o ticket selecionado.
+            // Primeiro verificamos na lista de "Iniciados", se não achar, tentamos na de "Finalizados".
+            Ticket selectedTicket = GetSelectedTicket();
+
+            if (selectedTicket == null)
+            {
+                selectedTicket = GetSelectedTicketFinished();
+            }
+
+            // 2. Se não encontrou em nenhuma das duas, avisa o usuário
+            if (selectedTicket == null)
+            {
+                MessageBox.Show("Please select a ticket to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Pergunta de confirmação (Seguindo o padrão do Book, mas usando ID e Descrição do Ticket)
+            // Fiz um pequeno tratamento na descrição para não ficar gigante na mensagem se o texto for longo
+            string descriptionPreview = selectedTicket.Description?.Length > 30
+                                        ? selectedTicket.Description.Substring(0, 30) + "..."
+                                        : selectedTicket.Description;
+
+            var result = MessageBox.Show(
+                $"Are you sure you want to remove Ticket #{selectedTicket.Id} ('{descriptionPreview}')?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            // 4. Executa a exclusão se o usuário disser "Sim"
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    _ticketService.Delete(selectedTicket.Id);
+                    MessageBox.Show("Ticket removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 5. Atualiza as listas para o item sumir da tela
+                    Refresh();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error removing ticket: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
