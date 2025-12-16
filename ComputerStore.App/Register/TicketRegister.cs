@@ -68,8 +68,17 @@ namespace ComputerStore.App.Register
 
             _allItens = _productOrServiceService.Get<ProductOrService>().ToList();
 
+           
+            cblService.DataSource = _allItens.Where(x => x.Type == TypeServiceOrProduct.Service).ToList();
+            cblService.DisplayMember = "Name";
+            cblService.ValueMember = "Id";
 
-            FilterListByType();
+           
+            cblProduct.DataSource = _allItens.Where(x => x.Type == TypeServiceOrProduct.Product).ToList();
+            cblProduct.DisplayMember = "Name";
+            cblProduct.ValueMember = "Id";
+
+            // FilterListByType();
         }
 
         
@@ -133,6 +142,17 @@ namespace ComputerStore.App.Register
                         cblProduct.SetItemChecked(i, true);
                     }
                 }
+
+                for (int i = 0; i < cblService.Items.Count; i++)
+                {
+                    var itemDaLista = (ProductOrService)cblService.Items[i];
+
+
+                    if (ticket.SaleItens.Any(sale => sale.ProductOrService.Id == itemDaLista.Id))
+                    {
+                        cblService.SetItemChecked(i, true);
+                    }
+                }
             }
         }
 
@@ -147,19 +167,42 @@ namespace ComputerStore.App.Register
             
 
             ticket.Description = txtDescription.Text;
-            ticket.Solution = txtSolution.Text;
-
-            
-
+            ticket.Solution = txtSolution.Text;          
             ticket.Status = rbStarted.Checked ? "Started" : "Finished";
             ticket.Client = (Client)cbClient.SelectedItem;
 
           
             if (ticket.SaleItens == null) ticket.SaleItens = new List<Sale>();
 
-            
-            
-            foreach (ProductOrService item in cblService.CheckedItems)
+
+            void AddItemsFromList(CheckedListBox listbox)
+            {
+                foreach (ProductOrService item in listbox.CheckedItems)
+                {
+                    // Só adiciona se o item AINDA NÃO estiver na lista do ticket
+                    if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
+                    {
+                        var newSale = new Sale
+                        {
+                            ProductOrService = item,
+                            Quantity = 1,
+                            UnityValue = item.Price,
+                            TotalValue = item.Price * 1,
+                            Ticket = ticket
+                        };
+                        ticket.SaleItens.Add(newSale);
+                    }
+                    // Soma ao orçamento
+                    ticket.Budget += item.Price;
+                }
+            }
+
+            AddItemsFromList(cblService);
+            AddItemsFromList(cblProduct);
+
+
+
+            /*foreach (ProductOrService item in cblService.CheckedItems)
             {
                 
                 if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
@@ -178,7 +221,7 @@ namespace ComputerStore.App.Register
                 decimal aux = item.Price;
 
                 ticket.Budget += aux;
-            }
+            }*/
         }
 
         
@@ -296,5 +339,8 @@ namespace ComputerStore.App.Register
 
 
         }
+
+
+
     }
 }
