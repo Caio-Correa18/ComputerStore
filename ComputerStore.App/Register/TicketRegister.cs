@@ -68,12 +68,12 @@ namespace ComputerStore.App.Register
 
             _allItens = _productOrServiceService.Get<ProductOrService>().ToList();
 
-           
+
             cblService.DataSource = _allItens.Where(x => x.Type == TypeServiceOrProduct.Service).ToList();
             cblService.DisplayMember = "Name";
             cblService.ValueMember = "Id";
 
-           
+
             cblProduct.DataSource = _allItens.Where(x => x.Type == TypeServiceOrProduct.Product).ToList();
             cblProduct.DisplayMember = "Name";
             cblProduct.ValueMember = "Id";
@@ -81,7 +81,7 @@ namespace ComputerStore.App.Register
             // FilterListByType();
         }
 
-        
+
         private void FilterListByType()
         {
             cblService.DataSource = null;
@@ -91,12 +91,12 @@ namespace ComputerStore.App.Register
 
             if (rbProduct.Checked)
             {
-               
+
                 filteredList = _allItens.Where(x => x.Type == TypeServiceOrProduct.Product).ToList();
             }
             else
             {
-              
+
                 filteredList = _allItens.Where(x => x.Type == TypeServiceOrProduct.Service).ToList();
             }
 
@@ -110,33 +110,35 @@ namespace ComputerStore.App.Register
             FilterListByType();
         }
 
-       
+
         private void FillFields(Ticket ticket)
         {
-            
+
             txtDate.Text = ticket.IssueDate.ToShortDateString();
             txtBudget.Text = ticket.Budget.ToString("F2");
             txtDescription.Text = ticket.Description;
             txtSolution.Text = ticket.Solution;
 
-            
+            rbFinished.Checked = false;
+            rbStarted.Checked = false;
+
             if (ticket.Status == "Started") rbStarted.Checked = true;
             else if (ticket.Status == "Finished") rbFinished.Checked = true;
 
-            
+
             if (ticket.Client != null)
             {
                 cbClient.SelectedValue = ticket.Client.Id;
             }
 
-            
+
             if (ticket.SaleItens != null)
             {
                 for (int i = 0; i < cblProduct.Items.Count; i++)
                 {
                     var itemDaLista = (ProductOrService)cblProduct.Items[i];
 
-                    
+
                     if (ticket.SaleItens.Any(sale => sale.ProductOrService.Id == itemDaLista.Id))
                     {
                         cblProduct.SetItemChecked(i, true);
@@ -156,7 +158,7 @@ namespace ComputerStore.App.Register
             }
         }
 
-       
+
         private void FormToObject(Ticket ticket)
         {
             if (DateTime.TryParse(txtDate.Text, out DateTime date))
@@ -164,14 +166,14 @@ namespace ComputerStore.App.Register
             else
                 ticket.IssueDate = DateTime.Now;
 
-            
+
 
             ticket.Description = txtDescription.Text;
-            ticket.Solution = txtSolution.Text;          
+            ticket.Solution = txtSolution.Text;
             ticket.Status = rbStarted.Checked ? "Started" : "Finished";
             ticket.Client = (Client)cbClient.SelectedItem;
 
-          
+
             if (ticket.SaleItens == null) ticket.SaleItens = new List<Sale>();
 
 
@@ -179,7 +181,7 @@ namespace ComputerStore.App.Register
             {
                 foreach (ProductOrService item in listbox.CheckedItems)
                 {
-                    
+
                     if (!ticket.SaleItens.Any(s => s.ProductOrService.Id == item.Id))
                     {
                         var newSale = new Sale
@@ -192,7 +194,7 @@ namespace ComputerStore.App.Register
                         };
                         ticket.SaleItens.Add(newSale);
                     }
-                    
+
                     ticket.Budget += item.Price;
                 }
             }
@@ -200,10 +202,10 @@ namespace ComputerStore.App.Register
             AddItemsFromList(cblService);
             AddItemsFromList(cblProduct);
 
-           
+
         }
 
-        
+
         protected override void Save()
         {
             try
@@ -212,9 +214,9 @@ namespace ComputerStore.App.Register
 
                 if (IsEditMode)
                 {
-                   
+
                     ticket = _ticketService.GetById<Ticket>(_currentTicketId);
-                   
+
                 }
                 else
                 {
@@ -223,7 +225,7 @@ namespace ComputerStore.App.Register
 
                 FormToObject(ticket);
 
-                
+
                 if (ticket.Client != null) _ticketService.AttachObject(ticket.Client);
 
                 foreach (var sale in ticket.SaleItens)
@@ -319,7 +321,34 @@ namespace ComputerStore.App.Register
 
         }
 
+        private void rbService_CheckedChanged(object sender)
+        {
 
+        }
 
+        private void rbProduct_CheckedChanged(object sender)
+        {
+
+        }
+
+        private void rbStarted_CheckedChanged(object sender)
+        {
+            VerificaStatus();
+        }
+
+        private void rbFinished_CheckedChanged(object sender)
+        {
+            VerificaStatus();
+        }
+
+        private void VerificaStatus()
+        {
+            txtSolution.Enabled = rbFinished.Checked;
+            if (!txtSolution.Enabled)
+            {
+                txtSolution.Text = string.Empty;
+            }
+           
+        }
     }
 }

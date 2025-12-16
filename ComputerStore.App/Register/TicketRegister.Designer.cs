@@ -58,11 +58,11 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(700, 927);
+            btnSave.Location = new Point(715, 928);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(919, 927);
+            btnCancel.Location = new Point(902, 928);
             // 
             // bigLabel1
             // 
@@ -165,6 +165,7 @@
             // txtBudget
             // 
             txtBudget.BackColor = Color.Transparent;
+            txtBudget.Enabled = false;
             txtBudget.Font = new Font("Tahoma", 11F);
             txtBudget.ForeColor = Color.DimGray;
             txtBudget.Image = null;
@@ -184,7 +185,7 @@
             txtDescription.Font = new Font("Tahoma", 11F);
             txtDescription.ForeColor = Color.DimGray;
             txtDescription.Image = null;
-            txtDescription.Location = new Point(218, 248);
+            txtDescription.Location = new Point(218, 250);
             txtDescription.MaxLength = 32767;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
@@ -208,6 +209,7 @@
             rbStarted.TabIndex = 13;
             rbStarted.Text = "Started";
             rbStarted.Transparent = false;
+            rbStarted.CheckedChanged += rbStarted_CheckedChanged;
             // 
             // rbFinished
             // 
@@ -223,6 +225,7 @@
             rbFinished.TabIndex = 14;
             rbFinished.Text = "Finished";
             rbFinished.Transparent = false;
+            rbFinished.CheckedChanged += rbFinished_CheckedChanged;
             // 
             // cbClient
             // 
@@ -275,6 +278,7 @@
             rbService.TabIndex = 17;
             rbService.Text = "Service";
             rbService.Transparent = false;
+            rbService.CheckedChanged += rbService_CheckedChanged;
             // 
             // rbProduct
             // 
@@ -290,6 +294,7 @@
             rbProduct.TabIndex = 18;
             rbProduct.Text = "Product";
             rbProduct.Transparent = false;
+            rbProduct.CheckedChanged += rbProduct_CheckedChanged;
             // 
             // cblService
             // 
