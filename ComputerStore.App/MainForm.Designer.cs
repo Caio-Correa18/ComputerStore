@@ -94,7 +94,7 @@
             btnNewTicket.Image = null;
             btnNewTicket.ImageAlign = ContentAlignment.MiddleLeft;
             btnNewTicket.InactiveColor = Color.FromArgb(60, 166, 166);
-            btnNewTicket.Location = new Point(486, 310);
+            btnNewTicket.Location = new Point(117, 348);
             btnNewTicket.Name = "btnNewTicket";
             btnNewTicket.PressedBorderColor = Color.FromArgb(165, 37, 37);
             btnNewTicket.PressedColor = Color.FromArgb(165, 37, 37);
@@ -202,14 +202,16 @@
             // 
             lvTickets.Font = new Font("Segoe UI", 12F);
             lvTickets.FullRowSelect = true;
+            lvTickets.GridLines = true;
             lvTickets.HideSelection = true;
-            lvTickets.Location = new Point(74, 59);
+            lvTickets.Location = new Point(31, 65);
             lvTickets.Name = "lvTickets";
             lvTickets.OwnerDraw = true;
-            lvTickets.Size = new Size(794, 189);
+            lvTickets.Size = new Size(1107, 238);
             lvTickets.TabIndex = 5;
             lvTickets.UseCompatibleStateImageBehavior = false;
             lvTickets.UseSelectable = true;
+            lvTickets.View = View.Details;
             // 
             // MainForm
             // 
