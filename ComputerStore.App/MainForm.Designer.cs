@@ -40,11 +40,24 @@
             btnEdit = new ReaLTaiizor.Controls.Button();
             lvTickets = new ReaLTaiizor.Controls.PoisonListView();
             btnNewTicket = new ReaLTaiizor.Controls.Button();
-            tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             imageList1 = new ImageList(components);
+            panel1 = new Panel();
+            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
+            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            lbGain = new ReaLTaiizor.Controls.BigLabel();
+            lbTicketsRemaning = new ReaLTaiizor.Controls.BigLabel();
+            lbTicketsFinished = new ReaLTaiizor.Controls.BigLabel();
             airTabPage1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage3.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // airTabPage1
@@ -53,7 +66,6 @@
             airTabPage1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             airTabPage1.BaseColor = Color.FromArgb(2, 103, 115);
             airTabPage1.Controls.Add(tabPage1);
-            airTabPage1.Controls.Add(tabPage2);
             airTabPage1.Controls.Add(tabPage3);
             airTabPage1.ImageList = imageList1;
             airTabPage1.ItemSize = new Size(50, 75);
@@ -225,19 +237,13 @@
             btnNewTicket.TextAlignment = StringAlignment.Center;
             btnNewTicket.Click += btnNewTicket_Click;
             // 
-            // tabPage2
-            // 
-            tabPage2.BackColor = Color.FromArgb(255, 239, 214);
-            tabPage2.ImageIndex = 4;
-            tabPage2.Location = new Point(79, 4);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1307, 820);
-            tabPage2.TabIndex = 1;
-            // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 239, 214);
+            tabPage3.Controls.Add(panel3);
+            tabPage3.Controls.Add(panel2);
+            tabPage3.Controls.Add(bigLabel3);
+            tabPage3.Controls.Add(panel1);
             tabPage3.ImageIndex = 7;
             tabPage3.Location = new Point(79, 4);
             tabPage3.Name = "tabPage3";
@@ -259,6 +265,122 @@
             imageList1.Images.SetKeyName(6, "plus.png");
             imageList1.Images.SetKeyName(7, "imac.png");
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(60, 166, 166);
+            panel1.Controls.Add(lbTicketsRemaning);
+            panel1.Controls.Add(bigLabel4);
+            panel1.Location = new Point(116, 160);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(384, 213);
+            panel1.TabIndex = 0;
+            // 
+            // bigLabel3
+            // 
+            bigLabel3.AutoSize = true;
+            bigLabel3.BackColor = Color.Transparent;
+            bigLabel3.Font = new Font("Segoe UI", 25F);
+            bigLabel3.ForeColor = Color.Black;
+            bigLabel3.Location = new Point(135, 21);
+            bigLabel3.Name = "bigLabel3";
+            bigLabel3.Size = new Size(228, 57);
+            bigLabel3.TabIndex = 1;
+            bigLabel3.Text = "Dashboard";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(60, 166, 166);
+            panel2.Controls.Add(lbTicketsFinished);
+            panel2.Controls.Add(bigLabel5);
+            panel2.Location = new Point(888, 160);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(384, 213);
+            panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(60, 166, 166);
+            panel3.Controls.Add(lbGain);
+            panel3.Controls.Add(bigLabel6);
+            panel3.Location = new Point(508, 476);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(384, 213);
+            panel3.TabIndex = 1;
+            // 
+            // bigLabel4
+            // 
+            bigLabel4.AutoSize = true;
+            bigLabel4.BackColor = Color.Transparent;
+            bigLabel4.Font = new Font("Segoe UI", 25F);
+            bigLabel4.ForeColor = Color.White;
+            bigLabel4.Location = new Point(19, 14);
+            bigLabel4.Name = "bigLabel4";
+            bigLabel4.Size = new Size(359, 57);
+            bigLabel4.TabIndex = 0;
+            bigLabel4.Text = "Tickets Remaining";
+            // 
+            // bigLabel5
+            // 
+            bigLabel5.AutoSize = true;
+            bigLabel5.BackColor = Color.Transparent;
+            bigLabel5.Font = new Font("Segoe UI", 25F);
+            bigLabel5.ForeColor = Color.White;
+            bigLabel5.Location = new Point(40, 14);
+            bigLabel5.Name = "bigLabel5";
+            bigLabel5.Size = new Size(317, 57);
+            bigLabel5.TabIndex = 1;
+            bigLabel5.Text = "Tickets Finished";
+            // 
+            // bigLabel6
+            // 
+            bigLabel6.AutoSize = true;
+            bigLabel6.BackColor = Color.Transparent;
+            bigLabel6.Font = new Font("Segoe UI", 25F);
+            bigLabel6.ForeColor = Color.White;
+            bigLabel6.Location = new Point(87, 10);
+            bigLabel6.Name = "bigLabel6";
+            bigLabel6.Size = new Size(204, 57);
+            bigLabel6.TabIndex = 2;
+            bigLabel6.Text = "Gain (R$):";
+            // 
+            // lbGain
+            // 
+            lbGain.AutoSize = true;
+            lbGain.BackColor = Color.Transparent;
+            lbGain.Font = new Font("Segoe UI", 25F);
+            lbGain.ForeColor = Color.White;
+            lbGain.Location = new Point(161, 91);
+            lbGain.Name = "lbGain";
+            lbGain.Size = new Size(48, 57);
+            lbGain.TabIndex = 3;
+            lbGain.Text = "0";
+            // 
+            // lbTicketsRemaning
+            // 
+            lbTicketsRemaning.AutoSize = true;
+            lbTicketsRemaning.BackColor = Color.Transparent;
+            lbTicketsRemaning.Font = new Font("Segoe UI", 25F);
+            lbTicketsRemaning.ForeColor = Color.White;
+            lbTicketsRemaning.Location = new Point(161, 91);
+            lbTicketsRemaning.Name = "lbTicketsRemaning";
+            lbTicketsRemaning.Size = new Size(48, 57);
+            lbTicketsRemaning.TabIndex = 4;
+            lbTicketsRemaning.Text = "0";
+            
+            // 
+            // lbTicketsFinished
+            // 
+            lbTicketsFinished.AutoSize = true;
+            lbTicketsFinished.BackColor = Color.Transparent;
+            lbTicketsFinished.Font = new Font("Segoe UI", 25F);
+            lbTicketsFinished.ForeColor = Color.White;
+            lbTicketsFinished.Location = new Point(168, 91);
+            lbTicketsFinished.Name = "lbTicketsFinished";
+            lbTicketsFinished.Size = new Size(48, 57);
+            lbTicketsFinished.TabIndex = 5;
+            lbTicketsFinished.Text = "0";
+            lbTicketsFinished.Click += bigLabel10_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -277,6 +399,14 @@
             airTabPage1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -284,7 +414,6 @@
 
         private ReaLTaiizor.Controls.AirTabPage airTabPage1;
         private TabPage tabPage1;
-        private TabPage tabPage2;
         private ImageList imageList1;
         private TabPage tabPage3;
         private ReaLTaiizor.Controls.Button btnNewTicket;
@@ -295,5 +424,15 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
         private ReaLTaiizor.Controls.Button btnEditFinished;
         private ReaLTaiizor.Controls.Button btnDelete;
+        private Panel panel1;
+        private Panel panel3;
+        private Panel panel2;
+        private ReaLTaiizor.Controls.BigLabel bigLabel3;
+        private ReaLTaiizor.Controls.BigLabel bigLabel6;
+        private ReaLTaiizor.Controls.BigLabel bigLabel5;
+        private ReaLTaiizor.Controls.BigLabel bigLabel4;
+        private ReaLTaiizor.Controls.BigLabel lbGain;
+        private ReaLTaiizor.Controls.BigLabel lbTicketsFinished;
+        private ReaLTaiizor.Controls.BigLabel lbTicketsRemaning;
     }
 }

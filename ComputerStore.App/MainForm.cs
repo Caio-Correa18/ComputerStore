@@ -101,7 +101,7 @@ namespace ComputerStore.App
 
                     item.SubItems.Add(ticket.IssueDate.ToShortDateString());
 
-                    
+
                     string clientName = ticket.Client != null ? ticket.Client.Name : "Unknown";
                     item.SubItems.Add(clientName);
 
@@ -143,7 +143,7 @@ namespace ComputerStore.App
                     string clientName = ticket.Client != null ? ticket.Client.Name : "Unknown";
                     item.SubItems.Add(clientName);
 
-                    
+
 
                     item.SubItems.Add(ticket.Description);
                     item.SubItems.Add(ticket.Budget.ToString("F2"));
@@ -187,7 +187,7 @@ namespace ComputerStore.App
 
 
 
-       
+
 
         private void btnNewTicket_Click(object sender, EventArgs e)
         {
@@ -226,19 +226,19 @@ namespace ComputerStore.App
         {
             var selectedTicket = GetSelectedTicketFinished();
 
-            
+
             if (selectedTicket == null)
             {
                 MessageBox.Show("Please select a ticket from the list to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
+
             using (var form = new TicketRegister(selectedTicket))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    
+
                     CarregarTicketsFinalizados();
                     CarregarTicketsIniciados();
                 }
@@ -261,6 +261,9 @@ namespace ComputerStore.App
             {
                 CarregarTicketsIniciados();
                 CarregarTicketsFinalizados();
+            }else if (airTabPage1.SelectedTab == tabPage3)
+            {
+                CarregarDashboard();
             }
 
         }
@@ -299,7 +302,7 @@ namespace ComputerStore.App
                     _ticketService.Delete(selectedTicket.Id);
                     MessageBox.Show("Ticket removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    
+
                     CarregarTicketsFinalizados();
                     CarregarTicketsIniciados();
                 }
@@ -308,6 +311,39 @@ namespace ComputerStore.App
                     MessageBox.Show($"Error removing ticket: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+
+
+        private void CarregarDashboard()
+        {
+            try
+            {
+                
+                var result = _ticketService.Get<Ticket>();
+                var allTickets = result?.ToList() ?? new List<Ticket>();
+
+             
+                var countStarted = allTickets.Count(t => t.Status == "Started");
+                lbTicketsRemaning.Text = countStarted.ToString();
+
+                
+                var countFinished = allTickets.Count(t => t.Status == "Finished");
+                lbTicketsFinished.Text = countFinished.ToString();
+
+                
+                var totalGain = allTickets.Where(t => t.Status == "Finished").Sum(t => t.Budget);
+                lbGain.Text = totalGain.ToString("C2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error to load dashboard: {ex.Message}");
+            }
+        }
+
+        private void bigLabel10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
