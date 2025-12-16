@@ -323,12 +323,12 @@ namespace ComputerStore.App.Register
 
         private void rbService_CheckedChanged(object sender)
         {
-
+            VerificaProductService();
         }
 
         private void rbProduct_CheckedChanged(object sender)
         {
-
+            VerificaProductService();
         }
 
         private void rbStarted_CheckedChanged(object sender)
@@ -349,6 +349,24 @@ namespace ComputerStore.App.Register
                 txtSolution.Text = string.Empty;
             }
            
+        }
+
+        private void VerificaProductService()
+        {
+            cblProduct.Enabled = rbProduct.Checked;
+            cblService.Enabled = rbService.Checked;
+
+            for (int i = 0; i < cblService.Items.Count; i++)
+            {
+                cblService.SetItemChecked(i, false);
+            }
+
+            // Limpa os itens marcados na lista de Produtos
+            for (int i = 0; i < cblProduct.Items.Count; i++)
+            {
+                cblProduct.SetItemChecked(i, false);
+            }
+
         }
     }
 }

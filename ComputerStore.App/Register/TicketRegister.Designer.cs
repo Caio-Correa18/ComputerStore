@@ -58,11 +58,11 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(715, 928);
+            btnSave.Location = new Point(686, 939);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(902, 928);
+            btnCancel.Location = new Point(878, 939);
             // 
             // bigLabel1
             // 
@@ -185,7 +185,7 @@
             txtDescription.Font = new Font("Tahoma", 11F);
             txtDescription.ForeColor = Color.DimGray;
             txtDescription.Image = null;
-            txtDescription.Location = new Point(218, 250);
+            txtDescription.Location = new Point(218, 252);
             txtDescription.MaxLength = 32767;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
@@ -307,6 +307,7 @@
             // txtSolution
             // 
             txtSolution.BackColor = Color.Transparent;
+            txtSolution.Enabled = false;
             txtSolution.Font = new Font("Tahoma", 11F);
             txtSolution.ForeColor = Color.DimGray;
             txtSolution.Image = null;
@@ -380,6 +381,7 @@
             // 
             // cblProduct
             // 
+            cblProduct.Enabled = false;
             cblProduct.FormattingEnabled = true;
             cblProduct.Location = new Point(345, 786);
             cblProduct.Name = "cblProduct";
