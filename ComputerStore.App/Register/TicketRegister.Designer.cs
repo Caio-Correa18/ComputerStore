@@ -58,11 +58,11 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(686, 939);
+            btnSave.Location = new Point(712, 927);
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(878, 939);
+            btnCancel.Location = new Point(917, 927);
             // 
             // bigLabel1
             // 
@@ -185,7 +185,7 @@
             txtDescription.Font = new Font("Tahoma", 11F);
             txtDescription.ForeColor = Color.DimGray;
             txtDescription.Image = null;
-            txtDescription.Location = new Point(218, 252);
+            txtDescription.Location = new Point(231, 256);
             txtDescription.MaxLength = 32767;
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";

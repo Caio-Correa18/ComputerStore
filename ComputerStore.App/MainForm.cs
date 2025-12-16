@@ -77,6 +77,8 @@ namespace ComputerStore.App
             lvTicketsFinished.Columns.Add("Client", 200);
             lvTicketsFinished.Columns.Add("Description", 300);
             lvTicketsFinished.Columns.Add("Budget (R$)", 100);
+            lvTicketsFinished.Columns.Add("Solution", 200);
+
         }
 
         private void CarregarTicketsIniciados()
@@ -141,8 +143,11 @@ namespace ComputerStore.App
                     string clientName = ticket.Client != null ? ticket.Client.Name : "Unknown";
                     item.SubItems.Add(clientName);
 
+                    
+
                     item.SubItems.Add(ticket.Description);
                     item.SubItems.Add(ticket.Budget.ToString("F2"));
+                    item.SubItems.Add(ticket.Solution ?? "-");
 
                     item.Tag = ticket;
 
